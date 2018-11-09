@@ -38,7 +38,7 @@ class Question extends React.Component {
     }
 
     // Check with answerComponent if answer is correct or not.
-    const correct = this.answerComponentRef.current.state.correct;
+    const correct = this.answerComponentRef.current.isCorrect();
 
     this.setState({
       pristine: false,

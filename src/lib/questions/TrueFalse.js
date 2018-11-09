@@ -5,16 +5,18 @@ class TrueFalse extends React.Component {
     super(props);
     this.state = {
       pristine: true,
-      selectedAnswer: null,
-      correct: null
+      selectedAnswer: null
     };
   }
+
+  isCorrect = () => {
+    return this.props.answers[this.state.selectedAnswer].correct;
+  };
 
   onChangeAnswer = index => {
     this.setState({
       pristine: false,
-      selectedAnswer: index,
-      correct: this.props.answers[index].correct
+      selectedAnswer: index
     });
     this.props.onChange();
   };
