@@ -13,15 +13,15 @@ const App = () => (
         answers: [
           {
             answer: "True",
-            feedback: "Wow, you are like a doctor or a rocket scientist!",
             correct: true
           },
           {
             answer: "False",
-            feedback: "Are you a kindergarden dropout?",
             correct: false
           }
-        ]
+        ],
+        correctFeedback: "Wow, you are like a doctor or a rocket scientist!",
+        incorrectFeedback: "Are you a kindergarden dropout?"
       }}
     />
   </div>
