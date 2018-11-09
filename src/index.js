@@ -24,6 +24,44 @@ const App = () => (
         incorrectFeedback: "Are you a kindergarden dropout?"
       }}
     />
+    <Question
+      questionData={{
+        type: "multiple-choice",
+        header: "Please select the correct answer",
+        body: "How many toes does a two toed sloth have?",
+        answers: [
+          {
+            answer: "None",
+            feedback: "Nope, definitely more than that",
+            correct: false
+          },
+          {
+            answer: "Ten",
+            feedback: "Nope, that is too many",
+            correct: false
+          },
+          {
+            answer: "Two",
+            feedback: "Nope, a little more than that.",
+            correct: false
+          },
+          {
+            answer: "Either six or eight",
+            feedback:
+              'You are correct! The name "two-toed sloth" erroneously describe the number of toes.',
+            correct: true
+          },
+          {
+            answer: "All of the above",
+            feedback: "Really?",
+            correct: false
+          }
+        ],
+        correctFeedback: "You picked the correct answer!",
+        incorrectFeedback:
+          "You picked an incorrect answer, see the feedback below your answer for why it was wrong."
+      }}
+    />
   </div>
 );
 

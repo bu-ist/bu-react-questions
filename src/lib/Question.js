@@ -1,5 +1,5 @@
 import React from "react";
-import { TrueFalse } from "./questions";
+import { TrueFalse, MultipleChoice } from "./questions";
 
 import "./Question.css";
 
@@ -53,6 +53,19 @@ class Question extends React.Component {
       case "true-false":
         return (
           <TrueFalse
+            key={this.state.resetCount}
+            ref={this.answerComponentRef}
+            {...this.props.questionData}
+            onChange={() =>
+              this.setState({
+                pristine: false
+              })
+            }
+          />
+        );
+      case "multiple-choice":
+        return (
+          <MultipleChoice
             key={this.state.resetCount}
             ref={this.answerComponentRef}
             {...this.props.questionData}
