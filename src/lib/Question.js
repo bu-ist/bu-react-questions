@@ -8,29 +8,33 @@ class Question extends React.Component {
     super(props);
     this.initialState = {
       pristine: true,
-      valid: false,
+      valid: null,
       submitted: false,
-      correct: null
+      correct: null,
+      resetCount: 0
     };
     this.state = {
-      ...this.initialState,
-      resetCount: 0
+      ...this.initialState
     };
   }
 
+  // This will likely get moved to inside of each specific question type.
   isCorrect = () => {
     return true;
   };
 
+  // Handles the reset event.
   onReset = event => {
     event.preventDefault();
 
     this.setState(prevState => ({
       ...this.initialState,
+      // Increment the reset count so that it will reset the child elements via the key prop.
       resetCount: prevState.resetCount + 1
     }));
   };
 
+  // Handles the submit event.
   onSubmit = event => {
     event.preventDefault();
 
@@ -47,6 +51,7 @@ class Question extends React.Component {
     });
   };
 
+  // Renders the correct question type.
   renderQuestion = () => {
     switch (this.props.questionData.type) {
       case "true-false":
@@ -57,19 +62,39 @@ class Question extends React.Component {
         return null;
     }
   };
+
+  // Generates the string of classes to be passed to className.
+  className = () => {
+    const prefix = this.constructor.name;
+    const classes = [];
+
+    classes.push(this.state.pristine ? "pristine" : "dirty");
+    classes.push(this.state.submitted ? "submitted" : "unsubmitted");
+
+    if (this.state.correct !== null) {
+      classes.push(this.state.correct ? "correct" : "wrong");
+    }
+
+    const prefixedClasses = classes.map(c => `${prefix}--state-${c}`);
+    prefixedClasses.unshift(prefix);
+    return prefixedClasses.join(" ");
+  };
+
   render() {
     const { header, body } = this.props.questionData;
     return (
-      <article className="Question">
-        <header>{header}</header>
-        <div>{body}</div>
+      <article className={this.className()}>
+        <header className={`${this.constructor.name}__header`}>{header}</header>
+        <div className={`${this.constructor.name}__body`}>{body}</div>
         <form onSubmit={this.onSubmit} onReset={this.onReset}>
           {this.renderQuestion()}
           {!this.state.pristine && <button type="reset">Reset</button>}
           {!this.state.submitted && <button type="submit">Check Answer</button>}
         </form>
         {this.state.correct !== null && (
-          <footer>General correct/incorrect feedback</footer>
+          <footer className={`${this.constructor.name}__feedback`}>
+            General correct/incorrect feedback
+          </footer>
         )}
       </article>
     );
