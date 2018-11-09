@@ -55,6 +55,7 @@ class Question extends React.Component {
           <TrueFalse
             key={this.state.resetCount}
             ref={this.answerComponentRef}
+            submitted={this.state.submitted}
             {...this.props.questionData}
             onChange={() =>
               this.setState({
@@ -68,6 +69,7 @@ class Question extends React.Component {
           <MultipleChoice
             key={this.state.resetCount}
             ref={this.answerComponentRef}
+            submitted={this.state.submitted}
             {...this.props.questionData}
             onChange={() =>
               this.setState({

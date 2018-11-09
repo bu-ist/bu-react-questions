@@ -25,12 +25,19 @@ class TrueFalse extends React.Component {
     const answers = this.props.answers.map((answer, index) => {
       return (
         <li key={index}>
-          <input
-            type="radio"
-            checked={this.state.selectedAnswer === index}
-            onChange={() => this.onChangeAnswer(index)}
-          />{" "}
-          {answer.answer}
+          <div className={`${this.constructor.name}__answer`}>
+            <input
+              type="radio"
+              checked={this.state.selectedAnswer === index}
+              onChange={() => this.onChangeAnswer(index)}
+            />{" "}
+            {answer.answer}
+          </div>
+          {this.props.submitted && (
+            <div className={`${this.constructor.name}__feedback`}>
+              {answer.feedback}
+            </div>
+          )}
         </li>
       );
     });
