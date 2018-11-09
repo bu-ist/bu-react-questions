@@ -1,6 +1,6 @@
 import React from "react";
 
-class TrueFalse extends React.Component {
+class MultipleChoice extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,4 +49,4 @@ class TrueFalse extends React.Component {
   }
 }
 
-export default TrueFalse;
+export default MultipleChoice;
