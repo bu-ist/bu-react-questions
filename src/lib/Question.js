@@ -6,6 +6,7 @@ import "./Question.css";
 class Question extends React.Component {
   constructor(props) {
     super(props);
+    this.answerComponentRef = React.createRef();
     this.initialState = {
       pristine: true,
       valid: null,
@@ -17,11 +18,6 @@ class Question extends React.Component {
       ...this.initialState
     };
   }
-
-  // This will likely get moved to inside of each specific question type.
-  isCorrect = () => {
-    return true;
-  };
 
   // Handles the reset event.
   onReset = event => {
@@ -37,12 +33,12 @@ class Question extends React.Component {
   // Handles the submit event.
   onSubmit = event => {
     event.preventDefault();
-
     if (this.state.submitted) {
       return false;
     }
 
-    const correct = this.isCorrect();
+    // Check with answerComponent if answer is correct or not.
+    const correct = this.answerComponentRef.current.state.correct;
 
     this.setState({
       pristine: false,
@@ -52,11 +48,20 @@ class Question extends React.Component {
   };
 
   // Renders the correct question type.
-  renderQuestion = () => {
+  renderAnswerComponent = () => {
     switch (this.props.questionData.type) {
       case "true-false":
         return (
-          <TrueFalse {...this.props.questionData} key={this.state.resetCount} />
+          <TrueFalse
+            key={this.state.resetCount}
+            ref={this.answerComponentRef}
+            {...this.props.questionData}
+            onChange={() =>
+              this.setState({
+                pristine: false
+              })
+            }
+          />
         );
       default:
         return null;
@@ -87,7 +92,7 @@ class Question extends React.Component {
         <header className={`${this.constructor.name}__header`}>{header}</header>
         <div className={`${this.constructor.name}__body`}>{body}</div>
         <form onSubmit={this.onSubmit} onReset={this.onReset}>
-          {this.renderQuestion()}
+          {this.renderAnswerComponent()}
           {!this.state.pristine && <button type="reset">Reset</button>}
           {!this.state.submitted && (
             <button type="submit" disabled={this.state.pristine}>
