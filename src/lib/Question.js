@@ -64,6 +64,9 @@ class Question extends React.Component {
           />
         );
       default:
+        console.error(
+          `'${this.props.questionData.type}' is not a recognized question type.`
+        );
         return null;
     }
   };
