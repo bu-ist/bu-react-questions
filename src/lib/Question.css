@@ -1,4 +1,13 @@
 .Question {
   background: #eee;
   padding: 1rem;
+  margin: 1rem 0;
+}
+
+.Question.Question--state-correct {
+  background: #0804;
+}
+
+.Question.Question--state-incorrect {
+  background: #f004;
 }

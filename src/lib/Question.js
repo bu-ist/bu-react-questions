@@ -109,7 +109,7 @@ class Question extends React.Component {
     classes.push(this.state.submitted ? "submitted" : "unsubmitted");
 
     if (this.state.correct !== null) {
-      classes.push(this.state.correct ? "correct" : "wrong");
+      classes.push(this.state.correct ? "correct" : "incorrect");
     }
 
     const prefixedClasses = classes.map(c => `${prefix}--state-${c}`);
@@ -135,8 +135,8 @@ class Question extends React.Component {
         {this.state.correct !== null && (
           <footer className={`${this.constructor.name}__feedback`}>
             {this.state.correct
-              ? this.props.questionData.correctFeedback
-              : this.props.questionData.incorrectFeedback}
+              ? `✔ ${this.props.questionData.correctFeedback}`
+              : `❌ ${this.props.questionData.incorrectFeedback}`}
           </footer>
         )}
       </article>
