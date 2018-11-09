@@ -4,9 +4,9 @@ import { Question } from "./lib";
 
 const App = () => (
   <div style={{ width: 640, margin: "15px auto" }}>
-    <h1>Hello React</h1>
+    <h1>React Questions</h1>
     <Question
-      data={{
+      questionData={{
         type: "true-false",
         header: "Is the following statement true or false",
         body: "The square root of 4 is 2",
