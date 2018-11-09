@@ -93,7 +93,9 @@ class Question extends React.Component {
         </form>
         {this.state.correct !== null && (
           <footer className={`${this.constructor.name}__feedback`}>
-            General correct/incorrect feedback
+            {this.state.correct
+              ? this.props.questionData.correctFeedback
+              : this.props.questionData.incorrectFeedback}
           </footer>
         )}
       </article>
