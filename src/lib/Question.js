@@ -89,7 +89,11 @@ class Question extends React.Component {
         <form onSubmit={this.onSubmit} onReset={this.onReset}>
           {this.renderQuestion()}
           {!this.state.pristine && <button type="reset">Reset</button>}
-          {!this.state.submitted && <button type="submit">Check Answer</button>}
+          {!this.state.submitted && (
+            <button type="submit" disabled={this.state.pristine}>
+              Check Answer
+            </button>
+          )}
         </form>
         {this.state.correct !== null && (
           <footer className={`${this.constructor.name}__feedback`}>
