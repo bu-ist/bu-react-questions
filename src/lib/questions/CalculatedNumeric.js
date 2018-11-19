@@ -64,18 +64,22 @@ class CalculatedNumeric extends React.Component {
 
   isCorrect = () => {
     const { answer, answerRange } = this.props;
-    const submittedAnswer = parseFloat(this.state.answer);
+    const submittedAnswer = this.state.answer;
 
-    const errors = this.validateAnswer(answer);
+    const errors = this.validateAnswer(submittedAnswer);
+
+    // Abort check if there are errors.
     if (errors.length > 0) {
       this.setState({ errors });
       return null;
     }
 
+    const floatAnswer = this.i18nFloat(submittedAnswer);
+
     const min = parseFloat(answer) - parseFloat(answerRange);
     const max = parseFloat(answer) + parseFloat(answerRange);
 
-    if (submittedAnswer >= min && submittedAnswer <= max) {
+    if (floatAnswer >= min && floatAnswer <= max) {
       return true;
     }
     return false;

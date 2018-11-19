@@ -45,16 +45,25 @@ class Question extends React.Component {
     // Check with answerComponent if answer is correct or not.
     const correct = this.answerComponentRef.current.isCorrect();
 
+    // Abort submission if correct is null.
+    if (correct === null) {
+      this.setState({
+        pristine: false
+      });
+      return false;
+    }
+
     this.setState({
       pristine: false,
       submitted: true,
       correct
     });
+    return true;
   };
 
-  onChange = ({ valid = null }) => {
+  onChange = ({ pristine = false, valid = null }) => {
     this.setState({
-      pristine: false,
+      pristine,
       valid
     });
   };
