@@ -1,5 +1,10 @@
 import React from "react";
-import { TrueFalse, MultipleChoice, MultipleAnswer } from "./questions";
+import {
+  TrueFalse,
+  MultipleChoice,
+  MultipleAnswer,
+  CalculatedNumeric
+} from "./questions";
 
 import "./Question.css";
 
@@ -47,6 +52,13 @@ class Question extends React.Component {
     });
   };
 
+  onChange = ({ valid = null }) => {
+    this.setState({
+      pristine: false,
+      valid
+    });
+  };
+
   // Renders the correct question type.
   renderAnswerComponent = () => {
     switch (this.props.questionData.type) {
@@ -57,11 +69,7 @@ class Question extends React.Component {
             ref={this.answerComponentRef}
             submitted={this.state.submitted}
             {...this.props.questionData}
-            onChange={() =>
-              this.setState({
-                pristine: false
-              })
-            }
+            onChange={this.onChange}
           />
         );
       case "multiple-choice":
@@ -71,11 +79,7 @@ class Question extends React.Component {
             ref={this.answerComponentRef}
             submitted={this.state.submitted}
             {...this.props.questionData}
-            onChange={() =>
-              this.setState({
-                pristine: false
-              })
-            }
+            onChange={this.onChange}
           />
         );
       case "multiple-answer":
@@ -85,11 +89,17 @@ class Question extends React.Component {
             ref={this.answerComponentRef}
             submitted={this.state.submitted}
             {...this.props.questionData}
-            onChange={() =>
-              this.setState({
-                pristine: false
-              })
-            }
+            onChange={this.onChange}
+          />
+        );
+      case "calculated-numeric":
+        return (
+          <CalculatedNumeric
+            key={this.state.resetCount}
+            ref={this.answerComponentRef}
+            submitted={this.state.submitted}
+            {...this.props.questionData}
+            onChange={this.onChange}
           />
         );
       default:
@@ -127,7 +137,10 @@ class Question extends React.Component {
           {this.renderAnswerComponent()}
           {!this.state.pristine && <button type="reset">Reset</button>}
           {!this.state.submitted && (
-            <button type="submit" disabled={this.state.pristine}>
+            <button
+              type="submit"
+              disabled={this.state.pristine || !this.state.valid}
+            >
               Check Answer
             </button>
           )}
