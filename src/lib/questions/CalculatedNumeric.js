@@ -86,21 +86,22 @@ class CalculatedNumeric extends React.Component {
   };
 
   onChangeAnswer = answer => {
-    const errors = this.validateAnswer(answer);
+    const pristine = false;
 
+    // Check if answer is valid.
+    const errors = this.validateAnswer(answer);
     const valid = errors.length === 0;
 
+    // Update component state.
     this.setState({
-      pristine: false,
+      pristine,
       valid,
       errors,
       answer
     });
 
-    this.props.onChange({
-      pristine: false,
-      valid
-    });
+    // Update question wrapper component state.
+    this.props.onChange(pristine, valid);
   };
 
   render() {

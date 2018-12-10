@@ -14,11 +14,19 @@ class MultipleChoice extends React.Component {
   };
 
   onChangeAnswer = index => {
+    const pristine = false;
+
+    // Check if answer is valid.
+    const valid = true;
+
+    // Update component state.
     this.setState({
-      pristine: false,
+      pristine,
       selectedAnswer: index
     });
-    this.props.onChange();
+
+    // Update question wrapper component state.
+    this.props.onChange(pristine, valid);
   };
 
   renderAnswers = () => {

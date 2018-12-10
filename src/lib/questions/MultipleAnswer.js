@@ -23,19 +23,27 @@ class MultipleAnswer extends React.Component {
   };
 
   onChangeAnswer = index => {
-    let newSelectedAnswers;
+    const pristine = false;
 
+    // Check if answer is valid.
+    const valid = true;
+
+    // Toggle selected answer.
+    let newSelectedAnswers;
     if (this.state.selectedAnswers.includes(index)) {
       newSelectedAnswers = this.state.selectedAnswers.filter(i => i !== index);
     } else {
       newSelectedAnswers = [...this.state.selectedAnswers, index];
     }
 
+    // Update component state.
     this.setState({
-      pristine: false,
+      pristine,
       selectedAnswers: newSelectedAnswers
     });
-    this.props.onChange();
+
+    // Update question wrapper component state.
+    this.props.onChange(pristine, valid);
   };
 
   renderAnswers = () => {

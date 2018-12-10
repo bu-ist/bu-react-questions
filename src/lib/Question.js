@@ -61,7 +61,7 @@ class Question extends React.Component {
     return true;
   };
 
-  onChange = ({ pristine = false, valid = null }) => {
+  onChange = (pristine = false, valid = null) => {
     this.setState({
       pristine,
       valid
