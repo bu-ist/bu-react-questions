@@ -6,8 +6,6 @@ import {
   CalculatedNumeric
 } from "./questions";
 
-import "./Question.css";
-
 class Question extends React.Component {
   constructor(props) {
     super(props);
