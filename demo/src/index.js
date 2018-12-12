@@ -3,6 +3,8 @@ import { render } from "react-dom";
 
 import { Question } from "../../src";
 
+import "../../src/Question.css";
+
 const trueFalseQuestionData = {
   type: "true-false",
   header: "Is the following statement true or false",
@@ -17,8 +19,10 @@ const trueFalseQuestionData = {
       correct: false
     }
   ],
-  correctFeedback: "Wow, you are like a doctor or a rocket scientist!",
-  incorrectFeedback: "Are you a kindergarden dropout?"
+  feedback: {
+    correct: "Wow, you are like a doctor or a rocket scientist!",
+    incorrect: "Are you a kindergarden dropout?"
+  }
 };
 
 const multipleAnswerQuestionData = {
@@ -52,9 +56,11 @@ const multipleAnswerQuestionData = {
       correct: false
     }
   ],
-  correctFeedback: "You picked all of the correct answers!",
-  incorrectFeedback:
-    "Sorry, see the feedback below your answers for why it was wrong."
+  feedback: {
+    correct: "You picked all of the correct answers!",
+    incorrect:
+      "Sorry, see the feedback below your answers for why it was wrong."
+  }
 };
 
 const multipleChoiceQuestionData = {
@@ -89,9 +95,11 @@ const multipleChoiceQuestionData = {
       correct: false
     }
   ],
-  correctFeedback: "You picked the correct answer!",
-  incorrectFeedback:
-    "You picked an incorrect answer, see the feedback below your answer for why it was wrong."
+  feedback: {
+    correct: "You picked the correct answer!",
+    incorrect:
+      "You picked an incorrect answer, see the feedback below your answer for why it was wrong."
+  }
 };
 
 const calculatedNumericQuestionData = {
