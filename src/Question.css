@@ -4,6 +4,11 @@
   margin: 1rem 0;
 }
 
+.Question ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
 .Question.Question--state-correct {
   background: #0804;
 }
