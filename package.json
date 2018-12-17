@@ -31,7 +31,10 @@
   "author": "",
   "homepage": "",
   "license": "MIT",
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carlosesilva/react-questions"
+  },
   "keywords": [
     "react-component"
   ]
