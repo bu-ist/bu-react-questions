@@ -7,3 +7,7 @@ A react component library for self-assement questions.
 ```
 $ npm install @carlosesilva/react-questions
 ```
+
+# Examples
+
+See [demo/src/index.js](demo/src/index.js) for example usage.
