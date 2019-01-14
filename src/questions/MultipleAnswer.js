@@ -1,6 +1,8 @@
 import React from "react";
 import Checkbox from '@material-ui/core/Checkbox';
 
+import styles from './common.scss';
+
 class MultipleAnswer extends React.Component {
   constructor(props) {
     super(props);
@@ -70,7 +72,7 @@ class MultipleAnswer extends React.Component {
   };
 
   render() {
-    return <ul>{this.renderAnswers()}</ul>;
+    return <ul className={styles.answerList}>{this.renderAnswers()}</ul>;
   }
 }
 

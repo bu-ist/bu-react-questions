@@ -1,6 +1,8 @@
 import React from "react";
 import Radio from '@material-ui/core/Radio';
 
+import styles from './common.scss';
+
 class TrueFalse extends React.Component {
   constructor(props) {
     super(props);
@@ -48,7 +50,7 @@ class TrueFalse extends React.Component {
   };
 
   render() {
-    return <ul>{this.renderAnswers()}</ul>;
+    return <ul className={styles.answerList}>{this.renderAnswers()}</ul>;
   }
 }
 

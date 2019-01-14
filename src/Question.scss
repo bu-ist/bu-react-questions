@@ -1,7 +1,11 @@
-.Question {
-  background: #eee;
+.question {
+  background: rgb(238, 238, 238);
   padding: 1rem;
   margin: 1rem 0;
+}
+
+.header {
+  font-style: italic;
 }
 
 .Question.Question--state-correct {
