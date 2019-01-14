@@ -5,6 +5,7 @@ import {
   MultipleAnswer,
   CalculatedNumeric
 } from "./questions";
+import Button from '@material-ui/core/Button';
 
 class Question extends React.Component {
   constructor(props) {
@@ -142,15 +143,17 @@ class Question extends React.Component {
         <div className={`${this.constructor.name}__body`}>{body}</div>
         <form onSubmit={this.onSubmit} onReset={this.onReset}>
           {this.renderAnswerComponent()}
-          {!this.state.pristine && <button type="reset">Reset</button>}
           {!this.state.submitted && (
-            <button
+            <Button
+              variant='outlined'
+              color='primary'
               type="submit"
               disabled={this.state.pristine || !this.state.valid}
             >
               Check Answer
-            </button>
+            </Button>
           )}
+          {!this.state.pristine && <Button type="reset">Reset</Button>}
         </form>
         {this.state.correct !== null && (
           <footer className={`${this.constructor.name}__feedback`}>

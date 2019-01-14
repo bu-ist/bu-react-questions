@@ -1,4 +1,5 @@
 import React from "react";
+import Radio from '@material-ui/core/Radio';
 
 class MultipleChoice extends React.Component {
   constructor(props) {
@@ -34,8 +35,7 @@ class MultipleChoice extends React.Component {
       return (
         <li key={index}>
           <div className={`${this.constructor.name}__answer`}>
-            <input
-              type="radio"
+            <Radio
               checked={this.state.selectedAnswer === index}
               onChange={() => this.onChangeAnswer(index)}
             />{" "}

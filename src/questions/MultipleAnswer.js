@@ -1,4 +1,5 @@
 import React from "react";
+import Checkbox from '@material-ui/core/Checkbox';
 
 class MultipleAnswer extends React.Component {
   constructor(props) {
@@ -51,8 +52,7 @@ class MultipleAnswer extends React.Component {
       return (
         <li key={index}>
           <div className={`${this.constructor.name}__answer`}>
-            <input
-              type="checkbox"
+            <Checkbox
               checked={this.state.selectedAnswers.includes(index)}
               onChange={() => this.onChangeAnswer(index)}
             />{" "}
