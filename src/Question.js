@@ -80,6 +80,7 @@ class Question extends React.Component {
             submitted={this.state.submitted}
             {...this.props.questionData}
             onChange={this.onChange}
+            correct={this.state.correct}
           />
         );
       case "multiple-choice":
