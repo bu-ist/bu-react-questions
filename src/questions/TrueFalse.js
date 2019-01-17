@@ -6,7 +6,7 @@ import styles from './common.scss';
 class TrueFalse extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {  
+    this.state = {
       pristine: true,
       selectedAnswer: null,
     };
