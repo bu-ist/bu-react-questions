@@ -52,6 +52,7 @@ class TrueFalse extends React.Component {
         <li key={index}>
           <div className={this.answerClassName(index)}>
             <Radio
+              color='primary'
               checked={this.state.selectedAnswer === index}
               onChange={() => this.onChangeAnswer(index)}
               disabled={this.props.submitted}
