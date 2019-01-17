@@ -144,7 +144,7 @@ class Question extends React.Component {
     return (
       <article className={styles.question}>
         <header className={styles.header}>{header}</header>
-        <div className={`${this.constructor.name}__body`}>{body}</div>
+        <div className={styles.body}>{body}</div>
         <form onSubmit={this.onSubmit} onReset={this.onReset}>
           {this.renderAnswerComponent()}
           {!this.state.submitted && (
@@ -160,7 +160,7 @@ class Question extends React.Component {
           {!this.state.pristine && <Button type="reset">Reset</Button>}
         </form>
         {this.state.correct !== null && (
-          <footer className={`${this.constructor.name}__feedback`}>
+          <footer className={styles.feedback}>
             {this.state.correct
               ? `✔ ${this.props.questionData.correctFeedback}`
               : `❌ ${this.props.questionData.incorrectFeedback}`}

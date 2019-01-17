@@ -49,8 +49,8 @@ class TrueFalse extends React.Component {
   renderAnswers = () => {
     const answers = this.props.answers.map((answer, index) => {
       return (
-        <li className={this.answerClassName(index)} key={index}>
-          <div className={`${this.constructor.name}__answer`}>
+        <li key={index}>
+          <div className={this.answerClassName(index)}>
             <Radio
               checked={this.state.selectedAnswer === index}
               onChange={() => this.onChangeAnswer(index)}
