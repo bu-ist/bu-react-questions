@@ -49,19 +49,35 @@ class MultipleAnswer extends React.Component {
     this.props.onChange(pristine, valid);
   };
 
+  answerClassName = (index) => {
+    // Return the correct CSS class for the current state.
+    if ( ! this.props.submitted || ! this.state.selectedAnswers.includes(index) ) {
+      // Default style with no feedback required.
+      return styles.answer;
+    }
+
+    if ( this.state.selectedAnswers.includes(index) && this.props.answers[index].correct ) {
+      return styles.correct;
+    } else {
+      return styles.incorrect;
+    }
+  }
+
   renderAnswers = () => {
     const answers = this.props.answers.map((answer, index) => {
+      const selected = this.state.selectedAnswers.includes(index);
+
       return (
         <li key={index}>
-          <div className={`${this.constructor.name}__answer`}>
+          <div className={this.answerClassName(index)}>
             <Checkbox
-              checked={this.state.selectedAnswers.includes(index)}
+              checked={selected}
               onChange={() => this.onChangeAnswer(index)}
             />{" "}
             {answer.answer}
           </div>
-          {this.props.submitted && (
-            <div className={`${this.constructor.name}__feedback`}>
+          {this.props.submitted && selected &&  (
+            <div className={styles.feedback}>
               {answer.feedback}
             </div>
           )}
