@@ -56,6 +56,7 @@ class MultipleChoice extends React.Component {
             <Radio
               checked={selected}
               onChange={() => this.onChangeAnswer(index)}
+              disabled={this.props.submitted}
             />{" "}
             {answer.answer}
           </div>

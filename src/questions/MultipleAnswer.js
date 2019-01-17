@@ -73,6 +73,7 @@ class MultipleAnswer extends React.Component {
             <Checkbox
               checked={selected}
               onChange={() => this.onChangeAnswer(index)}
+              disabled={this.props.submitted}
             />{" "}
             {answer.answer}
           </div>
