@@ -1,6 +1,6 @@
 {
   "name": "@carlosesilva/react-questions",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "react-questions React component library for questions",
   "main": "lib/index.js",
   "module": "es/index.js",
