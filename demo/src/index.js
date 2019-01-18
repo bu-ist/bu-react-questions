@@ -109,7 +109,10 @@ const calculatedNumericQuestionData = {
   answer: "0.33",
   answerRange: "0.001",
   decimalPlaces: "3",
-  feedback: "1 divided by 3 is 0.333333333"
+  feedback: {
+    correct: "1 divided by 3 is 0.333333333",
+    incorrect: "1 divided by 3 is 0.333333333"
+  }
 };
 
 class Demo extends Component {

@@ -139,16 +139,9 @@ class Question extends React.Component {
       return null;
     }
     const { feedback } = this.props.questionData;
-    console.log(this.props.questionData, feedback, typeof feedback);
-
-    let renderedFeedback = "";
-    if (typeof feedback === "string") {
-      renderedFeedback = feedback;
-    } else {
-      renderedFeedback = this.state.correct
-        ? feedback.correct
-        : feedback.incorrect;
-    }
+    const renderedFeedback = this.state.correct
+      ? feedback.correct
+      : feedback.incorrect;
 
     return (
       <div className={`${this.constructor.name}__feedback`}>
