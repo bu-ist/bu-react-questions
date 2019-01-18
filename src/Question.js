@@ -139,6 +139,22 @@ class Question extends React.Component {
     return prefixedClasses.join(" ");
   };
 
+  renderFeedback = () => {
+    if (this.state.correct === null) {
+      return null;
+    }
+    const { feedback } = this.props.questionData;
+    const renderedFeedback = this.state.correct
+      ? feedback.correct
+      : feedback.incorrect;
+
+    return (
+      <div className={`${this.constructor.name}__feedback`}>
+        {this.state.correct ? "✔" : "❌"} {renderedFeedback}
+      </div>
+    );
+  };
+
   render() {
     const { header, body } = this.props.questionData;
     return (
@@ -159,13 +175,7 @@ class Question extends React.Component {
           )}
           {!this.state.pristine && <Button type="reset">Reset</Button>}
         </form>
-        {this.state.correct !== null && (
-          <footer className={styles.feedback}>
-            {this.state.correct
-              ? `✔ ${this.props.questionData.correctFeedback}`
-              : `❌ ${this.props.questionData.incorrectFeedback}`}
-          </footer>
-        )}
+        <footer>{this.renderFeedback()}</footer>
       </article>
     );
   }
