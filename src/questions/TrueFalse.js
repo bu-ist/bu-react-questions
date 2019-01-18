@@ -1,13 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class TrueFalse extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pristine: true,
-      selectedAnswer: null
-    };
-  }
+  static propTypes = {
+    answers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    onChange: PropTypes.func
+  };
+
+  state = {
+    pristine: true,
+    selectedAnswer: null
+  };
 
   isCorrect = () => {
     return this.props.answers[this.state.selectedAnswer].correct;
@@ -26,7 +29,9 @@ class TrueFalse extends React.Component {
     });
 
     // Update question wrapper component state.
-    this.props.onChange(pristine, valid);
+    if (this.props.onChange) {
+      this.props.onChange(pristine, valid);
+    }
   };
 
   renderAnswers = () => {
