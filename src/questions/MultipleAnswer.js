@@ -51,12 +51,15 @@ class MultipleAnswer extends React.Component {
 
   answerClassName = (index) => {
     // Return the correct CSS class for the current state.
-    if ( ! this.props.submitted || ! this.state.selectedAnswers.includes(index) ) {
+    const correct = this.props.answers[index].correct;
+
+    if ( ! this.props.submitted || ! (this.state.selectedAnswers.includes(index) || correct ) ) {
       // Default style with no feedback required.
+      // Skip unselected answers that are correct, these need visual feedback display.
       return styles.answer;
     }
 
-    if ( this.state.selectedAnswers.includes(index) && this.props.answers[index].correct ) {
+    if ( this.state.selectedAnswers.includes(index) && correct ) {
       return styles.correct;
     } else {
       return styles.incorrect;
