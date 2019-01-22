@@ -4,16 +4,14 @@
 
 .answer {
     margin: .1em;
-}
 
-.correct {
-    composes: answer;
-    background-color: rgb(170, 241, 156);
-}
+    &Correct {
+        background-color: rgb(170, 241, 156);
+    }
 
-.incorrect {
-    composes: answer;
-    background-color: rgb(252, 179, 174);
+    &Incorrect {
+        background-color: rgb(252, 179, 174);
+    }
 }
 
 .feedback {

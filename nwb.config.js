@@ -3,13 +3,5 @@ module.exports = {
   npm: {
     esModules: true,
     umd: false
-  },
-  webpack: {
-    rules: {
-      'sass-css': {
-        modules: true,
-        localIdentName: ('[local]-[hash:base64:5]')
-      }
-    }
   }
 }

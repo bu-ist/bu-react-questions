@@ -1,7 +1,7 @@
 import React from "react";
 import Radio from '@material-ui/core/Radio';
 
-import styles from './common.scss';
+import './common.scss';
 
 class TrueFalse extends React.Component {
   constructor(props) {
@@ -36,13 +36,13 @@ class TrueFalse extends React.Component {
     // Return the correct CSS class for the current state.
     if ( ! this.props.submitted || this.state.selectedAnswer !== index ) {
       // Default style with no feedback required.
-      return styles.answer;
+      return 'answer';
     }
 
     if ( this.state.selectedAnswer === index && this.props.correct ) {
-      return styles.correct;
+      return 'answerCorrect';
     } else {
-      return styles.incorrect;
+      return 'answerIncorrect';
     }
   }
 
@@ -66,7 +66,7 @@ class TrueFalse extends React.Component {
   };
 
   render() {
-    return <ul className={styles.answerList}>{this.renderAnswers()}</ul>;
+    return <ul className='answerList'>{this.renderAnswers()}</ul>;
   }
 }
 

@@ -56,13 +56,13 @@ class MultipleAnswer extends React.Component {
     if ( ! this.props.submitted || ! (this.state.selectedAnswers.includes(index) || correct ) ) {
       // Default style with no feedback required.
       // Skip unselected answers that are correct, these need visual feedback display.
-      return styles.answer;
+      return 'answer';
     }
 
     if ( this.state.selectedAnswers.includes(index) && correct ) {
-      return styles.correct;
+      return 'answerCorrect';
     } else {
-      return styles.incorrect;
+      return 'answerIncorrect';
     }
   }
 
@@ -82,7 +82,7 @@ class MultipleAnswer extends React.Component {
             {answer.answer}
           </div>
           {this.props.submitted && selected &&  (
-            <div className={styles.feedback}>
+            <div className='feedback'>
               {answer.feedback}
             </div>
           )}
@@ -93,7 +93,7 @@ class MultipleAnswer extends React.Component {
   };
 
   render() {
-    return <ul className={styles.answerList}>{this.renderAnswers()}</ul>;
+    return <ul className='answerList'>{this.renderAnswers()}</ul>;
   }
 }
 
