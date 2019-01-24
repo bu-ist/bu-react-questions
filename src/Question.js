@@ -26,11 +26,19 @@ class Question extends React.Component {
   onReset = event => {
     event.preventDefault();
 
-    this.setState(prevState => ({
-      ...this.initialState,
-      // Increment the reset count so that it will reset the child elements via the key prop.
-      resetCount: prevState.resetCount + 1
-    }));
+    this.setState(
+      prevState => ({
+        ...this.initialState,
+        // Increment the reset count so that it will reset the child elements via the key prop.
+        resetCount: prevState.resetCount + 1
+      }),
+      () => {
+        // Run the onReset event hook prop.
+        if (this.props.onReset) {
+          this.props.onReset();
+        }
+      }
+    );
   };
 
   // Handles the submit event.
@@ -51,11 +59,20 @@ class Question extends React.Component {
       return false;
     }
 
-    this.setState({
-      pristine: false,
-      submitted: true,
-      correct
-    });
+    this.setState(
+      {
+        pristine: false,
+        submitted: true,
+        correct
+      },
+      () => {
+        // Run the onSubmit event hook prop.
+        if (this.props.onSubmit) {
+          this.props.onSubmit();
+        }
+      }
+    );
+
     return true;
   };
 
