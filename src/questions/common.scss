@@ -1,5 +1,12 @@
 .answerList {
     list-style-type: none;
+
+    /* material-ui draws native inputs and hides them when disabled.
+    some themes may have their own conflicting styles, so we enforce
+    hidden disabled inputs here to prevent ghost controls showing up. */
+    input:disabled {
+        opacity: 0;
+    }
 }
 
 .answer {
