@@ -1,19 +1,24 @@
 .answerList {
     list-style-type: none;
+
+    /* material-ui draws native inputs and hides them when disabled.
+    some themes may have their own conflicting styles, so we enforce
+    hidden disabled inputs here to prevent ghost controls showing up. */
+    input:disabled {
+        opacity: 0;
+    }
 }
 
 .answer {
     margin: .1em;
-}
 
-.correct {
-    composes: answer;
-    background-color: rgb(170, 241, 156);
-}
+    &Correct {
+        background-color: rgb(170, 241, 156);
+    }
 
-.incorrect {
-    composes: answer;
-    background-color: rgb(252, 179, 174);
+    &Incorrect {
+        background-color: rgb(252, 179, 174);
+    }
 }
 
 .feedback {

@@ -36,13 +36,13 @@ class MultipleChoice extends React.Component {
     // Return the correct CSS class for the current state.
     if ( ! this.props.submitted || this.state.selectedAnswer !== index ) {
       // Default style with no feedback required.
-      return styles.answer;
+      return 'answer';
     }
 
     if ( this.state.selectedAnswer === index && this.props.correct ) {
-      return styles.correct;
+      return 'answerCorrect';
     } else {
-      return styles.incorrect;
+      return 'answerIncorrect';
     }
   }
 
@@ -62,7 +62,7 @@ class MultipleChoice extends React.Component {
             {answer.answer}
           </div>
           {this.props.submitted && selected && (
-            <div className={styles.feedback}>
+            <div className='feedback'>
               {answer.feedback}
             </div>
           )}
@@ -73,7 +73,7 @@ class MultipleChoice extends React.Component {
   };
 
   render() {
-    return <ul className={styles.answerList}>{this.renderAnswers()}</ul>;
+    return <ul className='answerList'>{this.renderAnswers()}</ul>;
   }
 }
 

@@ -7,7 +7,7 @@ import {
 } from "./questions";
 import Button from '@material-ui/core/Button';
 
-import styles from './Question.scss';
+import './Question.scss';
 
 class Question extends React.Component {
   constructor(props) {
@@ -158,9 +158,9 @@ class Question extends React.Component {
   render() {
     const { header, body } = this.props.questionData;
     return (
-      <article className={styles.question}>
-        <header className={styles.header}>{header}</header>
-        <div className={styles.body}>{body}</div>
+      <article className='question'>
+        <header className='header'>{header}</header>
+        <div className='body'>{body}</div>
         <form onSubmit={this.onSubmit} onReset={this.onReset}>
           {this.renderAnswerComponent()}
           {!this.state.submitted && (
