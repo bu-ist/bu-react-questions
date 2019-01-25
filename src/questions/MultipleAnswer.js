@@ -81,7 +81,7 @@ class MultipleAnswer extends React.Component {
             />{" "}
             {answer.answer}
           </div>
-          {this.props.submitted && selected &&  (
+          {this.props.submitted &&  (
             <div className='feedback'>
               {answer.feedback}
             </div>
