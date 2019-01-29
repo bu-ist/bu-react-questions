@@ -1,6 +1,8 @@
 import React from "react";
 import Checkbox from '@material-ui/core/Checkbox';
 
+import FeedbackIcon from './components/FeedbackIcon';
+
 import './common.scss';
 
 class MultipleAnswer extends React.Component {
@@ -69,10 +71,12 @@ class MultipleAnswer extends React.Component {
   renderAnswers = () => {
     const answers = this.props.answers.map((answer, index) => {
       const selected = this.state.selectedAnswers.includes(index);
+      const thisClass = this.answerClassName(index);
 
       return (
         <li key={index}>
-          <div className={this.answerClassName(index)}>
+        <FeedbackIcon answerFeedback={thisClass} />
+          <div className={thisClass}>
             <Checkbox
               color='primary'
               checked={selected}
