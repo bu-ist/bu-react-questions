@@ -1,7 +1,7 @@
 import React from "react";
 import Checkbox from '@material-ui/core/Checkbox';
 
-import styles from './common.scss';
+import './common.scss';
 
 class MultipleAnswer extends React.Component {
   constructor(props) {

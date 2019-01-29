@@ -1,7 +1,7 @@
 import React from "react";
 import Radio from '@material-ui/core/Radio';
 
-import styles from './common.scss';
+import './common.scss';
 
 class MultipleChoice extends React.Component {
   constructor(props) {
