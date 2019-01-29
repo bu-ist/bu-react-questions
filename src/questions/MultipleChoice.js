@@ -1,7 +1,7 @@
 import React from "react";
 import Radio from '@material-ui/core/Radio';
-import CheckCircleRounded from '@material-ui/icons/CheckCircleRounded';
-import CancelRounded from '@material-ui/icons/CancelRounded';
+
+import FeedbackIcon from './components/FeedbackIcon'
 
 import './common.scss';
 
@@ -78,22 +78,6 @@ class MultipleChoice extends React.Component {
 
   render() {
     return <ul className='answerList'>{this.renderAnswers()}</ul>;
-  }
-}
-
-class FeedbackIcon extends React.Component {
-  render() {
-
-    if (this.props.show === 'answer') {
-      return (null);
-    }
-
-    if (this.props.show === 'answerCorrect') {
-      return <CheckCircleRounded className='feedbackIconCorrect'  />
-    } else {
-      return <CancelRounded className="feedbackIconIncorrect"  />
-    }
-
   }
 }
 
