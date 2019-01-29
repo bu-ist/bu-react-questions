@@ -7,21 +7,45 @@
     input:disabled {
         opacity: 0;
     }
-}
-
-.answer {
-    margin: .1em;
-
-    &Correct {
-        background-color: rgb(170, 241, 156);
+    
+    .answer {
+        margin: .1em;
+        border: solid .2em;
+        border-radius: .8em;
+        box-sizing: border-box;
+        border-color: rgba(255,255,255,0);
+    
+        &Correct {
+            @extend .answer;
+            border-color: rgb(75, 173, 56);
+        }
+    
+        &Incorrect {
+            @extend .answer;
+            border-color: rgb(170, 50, 50);
+        }
     }
 
-    &Incorrect {
-        background-color: rgb(252, 179, 174);
-    }
-}
+    .feedbackIcon {
+        position: absolute;
+        font-size: 2em;
+        left: .9em;
+        top: auto;
+        margin-top: .36em;
 
-.feedback {
-    margin-left: 3em;
-    font-style: italic;
+        &Correct {
+            @extend .feedbackIcon;
+            color: rgb(75, 173, 56);
+        }
+
+        &Incorrect {
+            @extend .feedbackIcon;
+            color: rgb(170, 50, 50);
+        }
+    }
+    
+    .feedback {
+        margin-left: 3em;
+        font-style: italic;
+    }
 }
