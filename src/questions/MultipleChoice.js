@@ -1,7 +1,7 @@
 import React from "react";
 import Radio from '@material-ui/core/Radio';
 
-import FeedbackIcon from './components/FeedbackIcon'
+import FeedbackIcon from './components/FeedbackIcon';
 
 import './common.scss';
 
