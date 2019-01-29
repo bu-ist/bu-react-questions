@@ -1,6 +1,8 @@
 import React from "react";
 import Radio from '@material-ui/core/Radio';
 
+import FeedbackIcon from './components/FeedbackIcon';
+
 import './common.scss';
 
 class TrueFalse extends React.Component {
@@ -48,9 +50,12 @@ class TrueFalse extends React.Component {
 
   renderAnswers = () => {
     const answers = this.props.answers.map((answer, index) => {
+      const thisClass = this.answerClassName(index);
+
       return (
         <li key={index}>
-          <div className={this.answerClassName(index)}>
+          <FeedbackIcon answerFeedback={thisClass} />
+          <div className={thisClass}>
             <Radio
               color='primary'
               checked={this.state.selectedAnswer === index}
