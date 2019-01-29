@@ -57,7 +57,6 @@ class MultipleAnswer extends React.Component {
 
     if ( ! this.props.submitted || ! (this.state.selectedAnswers.includes(index) || correct ) ) {
       // Default style with no feedback required.
-      // Skip unselected answers that are correct, these need visual feedback display.
       return 'answer';
     }
 
