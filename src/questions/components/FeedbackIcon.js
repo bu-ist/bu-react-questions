@@ -6,7 +6,7 @@ import '../common.scss';
 
 class FeedbackIcon extends React.Component {
     render() {
-      const feedback = this.props.answerFeedback;
+      const feedback = this.props.feedbackStyle;
   
       if (feedback === 'answer') {
         return null;

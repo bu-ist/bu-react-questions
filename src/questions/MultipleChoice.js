@@ -55,7 +55,7 @@ class MultipleChoice extends React.Component {
 
       return (
         <li key={index}>
-          <FeedbackIcon answerFeedback={thisClass} />
+          <FeedbackIcon feedbackStyle={thisClass} />
           <div className={thisClass}>
             <Radio
               color='primary'
