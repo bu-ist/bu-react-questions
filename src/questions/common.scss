@@ -1,5 +1,6 @@
 .answerList {
     list-style-type: none;
+    padding-left: 2.5em;
 
     /* material-ui draws native inputs and hides them when disabled.
     some themes may have their own conflicting styles, so we enforce
@@ -29,9 +30,10 @@
     .feedbackIcon {
         position: absolute;
         font-size: 2em;
-        left: .9em;
+        left: auto;
         top: auto;
         margin-top: .36em;
+        margin-left: -1.05em;
 
         &Correct {
             @extend .feedbackIcon;
