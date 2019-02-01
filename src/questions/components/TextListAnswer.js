@@ -1,11 +1,8 @@
 import React from "react";
-import CheckCircleRounded from '@material-ui/icons/CheckCircleRounded';
-import CancelRounded from '@material-ui/icons/CancelRounded';
+import {default as CorrectIcon} from '@material-ui/icons/CheckCircleRounded';
+import {default as IncorrectIcon} from '@material-ui/icons/CancelRounded';
 
 import '../common.scss';
-
-const CorrectIcon = CheckCircleRounded;
-const IncorrectIcon = CancelRounded;
 
 class TextListAnswer extends React.Component {
 
