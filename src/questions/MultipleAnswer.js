@@ -1,13 +1,9 @@
 import React from "react";
 import Checkbox from '@material-ui/core/Checkbox';
 
-import CheckCircleRounded from '@material-ui/icons/CheckCircleRounded';
-import CancelRounded from '@material-ui/icons/CancelRounded';
+import TextListAnswer from './components/TextListAnswer';
 
 import './common.scss';
-
-const CorrectIcon = CheckCircleRounded;
-const IncorrectIcon = CancelRounded;
 
 class MultipleAnswer extends React.Component {
   constructor(props) {
@@ -56,11 +52,10 @@ class MultipleAnswer extends React.Component {
   };
 
   answerType = (index) => {
-    // Return the correct CSS class for the current state.
+    // Calculate what type of feedback the answer should display.
     const correct = this.props.answers[index].correct;
 
     if ( ! this.props.submitted || ! (this.state.selectedAnswers.includes(index) || correct ) ) {
-      // Default style with no feedback required.
       return 'unselected';
     }
 
@@ -76,59 +71,28 @@ class MultipleAnswer extends React.Component {
       const selected = this.state.selectedAnswers.includes(index);
       const answerType = this.answerType(index);
 
+      // Different question types use different form controls, so pass the form control as a prop.
+      const formControl = <Checkbox
+        color='primary'
+        checked={selected}
+        onChange={() => this.onChangeAnswer(index)}
+        disabled={this.props.submitted}
+      />
+
       return (
-        <Answer 
+        <TextListAnswer 
           key={index}
-          index={index} 
           answer={answer}
           selected={selected}
           type={answerType}
           onChangeAnswer={this.onChangeAnswer}
           submitted={this.props.submitted}
+          formControl={formControl}
         />
       );
     });
 
     return <ul className='answerList'>{answers}</ul>;
-  }
-}
-
-class Answer extends React.Component {
-
-  render() {
-    const answer = this.props.answer;
-    const type = this.props.type;
-
-    let style = 'answer';
-    let icon = null;
-
-    if (type === 'correct') {
-      style = 'answerCorrect';
-      icon = <CorrectIcon className='feedbackIconCorrect' />;
-    } else if (type === 'incorrect') {
-      style = 'answerIncorrect';
-      icon = <IncorrectIcon className='feedbackIconIncorrect' />;
-    }
-
-    return(
-      <li>
-        {icon}
-        <div className={style}>
-          <Checkbox
-            color='primary'
-            checked={this.props.selected}
-            onChange={() => this.props.onChangeAnswer(this.props.index)}
-            disabled={this.props.submitted}
-          />{" "}
-          {answer.answer}
-        </div>
-        {this.props.submitted &&  (
-          <div className='feedback'>
-            {answer.feedback}
-          </div>
-        )}
-      </li>
-    );
   }
 }
 
