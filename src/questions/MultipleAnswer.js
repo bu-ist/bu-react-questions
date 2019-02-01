@@ -51,7 +51,7 @@ class MultipleAnswer extends React.Component {
     this.props.onChange(pristine, valid);
   };
 
-  answerClassName = (index) => {
+  answerState = (index) => {
     // Return the correct CSS class for the current state.
     const correct = this.props.answers[index].correct;
 
@@ -70,26 +70,17 @@ class MultipleAnswer extends React.Component {
   renderAnswers = () => {
     const answers = this.props.answers.map((answer, index) => {
       const selected = this.state.selectedAnswers.includes(index);
-      const thisClass = this.answerClassName(index);
+      const answerState = this.answerState(index);
 
       return (
-        <li key={index}>
-          <FeedbackIcon feedbackStyle={thisClass} />
-          <div className={thisClass}>
-            <Checkbox
-              color='primary'
-              checked={selected}
-              onChange={() => this.onChangeAnswer(index)}
-              disabled={this.props.submitted}
-            />{" "}
-            {answer.answer}
-          </div>
-          {this.props.submitted &&  (
-            <div className='feedback'>
-              {answer.feedback}
-            </div>
-          )}
-        </li>
+        <Answer key={index}
+          index={index} 
+          answer={answer}
+          selected={selected}
+          answerState={answerState}
+          onChangeAnswer={this.onChangeAnswer}
+          submitted={this.props.submitted}
+        />
       );
     });
     return answers;
@@ -97,6 +88,34 @@ class MultipleAnswer extends React.Component {
 
   render() {
     return <ul className='answerList'>{this.renderAnswers()}</ul>;
+  }
+}
+
+class Answer extends React.Component {
+
+  render() {
+    const answer = this.props.answer;
+
+    return(
+      <li>
+        <FeedbackIcon feedbackStyle={this.props.answerState} />
+        <div className={this.props.answerState}>
+          <Checkbox
+            color='primary'
+            checked={this.props.selected}
+            onChange={() => this.props.onChangeAnswer(this.props.index)}
+            disabled={this.props.submitted}
+          />{" "}
+          {answer.answer}
+        </div>
+        {this.props.submitted &&  (
+          <div className='feedback'>
+            {answer.feedback}
+          </div>
+        )}
+        
+      </li>
+    );
   }
 }
 
