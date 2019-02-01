@@ -1,6 +1,6 @@
 import React from "react";
-import {default as CorrectIcon} from '@material-ui/icons/CheckCircleRounded';
-import {default as IncorrectIcon} from '@material-ui/icons/CancelRounded';
+import CorrectIcon from '@material-ui/icons/CheckCircleRounded';
+import IncorrectIcon from '@material-ui/icons/CancelRounded';
 
 import '../common.scss';
 
