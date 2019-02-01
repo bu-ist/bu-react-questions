@@ -67,13 +67,14 @@ class MultipleAnswer extends React.Component {
     }
   }
 
-  renderAnswers = () => {
+  render() {
     const answers = this.props.answers.map((answer, index) => {
       const selected = this.state.selectedAnswers.includes(index);
       const answerState = this.answerState(index);
 
       return (
-        <Answer key={index}
+        <Answer 
+          key={index}
           index={index} 
           answer={answer}
           selected={selected}
@@ -83,11 +84,8 @@ class MultipleAnswer extends React.Component {
         />
       );
     });
-    return answers;
-  };
 
-  render() {
-    return <ul className='answerList'>{this.renderAnswers()}</ul>;
+    return <ul className='answerList'>{answers}</ul>;
   }
 }
 
