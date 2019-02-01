@@ -26,7 +26,7 @@ class TextListAnswer extends React.Component {
       <li>
         {icon}
         <div className={style}>
-          {formControl}{" "}
+          {this.props.children}{" "}
           {answer.answer}
         </div>
         {this.props.submitted &&  (

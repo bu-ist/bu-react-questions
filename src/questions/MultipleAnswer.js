@@ -71,14 +71,6 @@ class MultipleAnswer extends React.Component {
       const selected = this.state.selectedAnswers.includes(index);
       const answerType = this.answerType(index);
 
-      // Different question types use different form controls, so pass the form control as a prop.
-      const formControl = <Checkbox
-        color='primary'
-        checked={selected}
-        onChange={() => this.onChangeAnswer(index)}
-        disabled={this.props.submitted}
-      />
-
       return (
         <TextListAnswer 
           key={index}
@@ -87,8 +79,14 @@ class MultipleAnswer extends React.Component {
           type={answerType}
           onChangeAnswer={this.onChangeAnswer}
           submitted={this.props.submitted}
-          formControl={formControl}
-        />
+        >
+          <Checkbox
+            color='primary'
+            checked={selected}
+            onChange={() => this.onChangeAnswer(index)}
+            disabled={this.props.submitted}
+          />
+        </TextListAnswer>
       );
     });
 

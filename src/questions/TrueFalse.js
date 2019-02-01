@@ -51,13 +51,6 @@ class TrueFalse extends React.Component {
     const answers = this.props.answers.map((answer, index) => {
       const answerType = this.answerType(index);
 
-      const formControl = <Radio
-        color='primary'
-        checked={this.state.selectedAnswer === index}
-        onChange={() => this.onChangeAnswer(index)}
-        disabled={this.props.submitted}
-      />
-
       return (
         <TextListAnswer 
           key={index}
@@ -65,8 +58,14 @@ class TrueFalse extends React.Component {
           type={answerType}
           onChangeAnswer={this.onChangeAnswer}
           submitted={this.props.submitted}
-          formControl={formControl}
-        />
+        >
+          <Radio
+            color='primary'
+            checked={this.state.selectedAnswer === index}
+            onChange={() => this.onChangeAnswer(index)}
+            disabled={this.props.submitted}
+          />
+        </TextListAnswer>
       );
     });
   

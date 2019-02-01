@@ -52,13 +52,6 @@ class MultipleChoice extends React.Component {
       const selected = this.state.selectedAnswer === index;
       const answerType = this.answerType(index);
 
-      const formControl = <Radio
-        color='primary'
-        checked={selected}
-        onChange={() => this.onChangeAnswer(index)}
-        disabled={this.props.submitted}
-      />
-
       return (
         <TextListAnswer
           key={index}
@@ -67,8 +60,14 @@ class MultipleChoice extends React.Component {
           type={answerType}
           onChangeAnswer={this.onChangeAnswer}
           submitted={this.props.submitted}
-          formControl={formControl}
-        />
+        >
+          <Radio
+            color='primary'
+            checked={selected}
+            onChange={() => this.onChangeAnswer(index)}
+            disabled={this.props.submitted}
+          />
+        </TextListAnswer>
       );
     });
 
