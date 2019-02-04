@@ -1,6 +1,8 @@
 import React from "react";
 import Checkbox from '@material-ui/core/Checkbox';
 
+import TextListAnswer from './components/TextListAnswer';
+
 import './common.scss';
 
 class MultipleAnswer extends React.Component {
@@ -49,51 +51,46 @@ class MultipleAnswer extends React.Component {
     this.props.onChange(pristine, valid);
   };
 
-  answerClassName = (index) => {
-    // Return the correct CSS class for the current state.
+  answerType = (index) => {
+    // Calculate what type of feedback the answer should display.
     const correct = this.props.answers[index].correct;
 
     if ( ! this.props.submitted || ! (this.state.selectedAnswers.includes(index) || correct ) ) {
-      // Default style with no feedback required.
-      // Skip unselected answers that are correct, these need visual feedback display.
-      return 'answer';
+      return 'unselected';
     }
 
     if ( this.state.selectedAnswers.includes(index) && correct ) {
-      return 'answerCorrect';
+      return 'correct';
     } else {
-      return 'answerIncorrect';
+      return 'incorrect';
     }
   }
 
-  renderAnswers = () => {
+  render() {
     const answers = this.props.answers.map((answer, index) => {
       const selected = this.state.selectedAnswers.includes(index);
+      const answerType = this.answerType(index);
 
       return (
-        <li key={index}>
-          <div className={this.answerClassName(index)}>
-            <Checkbox
-              color='primary'
-              checked={selected}
-              onChange={() => this.onChangeAnswer(index)}
-              disabled={this.props.submitted}
-            />{" "}
-            {answer.answer}
-          </div>
-          {this.props.submitted &&  (
-            <div className='feedback'>
-              {answer.feedback}
-            </div>
-          )}
-        </li>
+        <TextListAnswer 
+          key={index}
+          answer={answer}
+          selected={selected}
+          type={answerType}
+          onChangeAnswer={this.onChangeAnswer}
+          submitted={this.props.submitted}
+        >
+          <Checkbox
+            color='primary'
+            checked={selected}
+            onChange={() => this.onChangeAnswer(index)}
+            disabled={this.props.submitted}
+          />
+        </TextListAnswer>
       );
     });
-    return answers;
-  };
 
-  render() {
-    return <ul className='answerList'>{this.renderAnswers()}</ul>;
+    return <ul className='answerList'>{answers}</ul>;
   }
 }
 

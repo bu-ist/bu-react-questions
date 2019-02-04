@@ -1,6 +1,8 @@
 import React from "react";
 import Radio from '@material-ui/core/Radio';
 
+import TextListAnswer from './components/TextListAnswer';
+
 import './common.scss';
 
 class MultipleChoice extends React.Component {
@@ -32,48 +34,44 @@ class MultipleChoice extends React.Component {
     this.props.onChange(pristine, valid);
   };
 
-  answerClassName = (index) => {
-    // Return the correct CSS class for the current state.
+  answerType = (index) => {
+    // Calculate what type of feedback the answer should display.
     if ( ! this.props.submitted || this.state.selectedAnswer !== index ) {
-      // Default style with no feedback required.
-      return 'answer';
+      return 'unselected';
     }
 
     if ( this.state.selectedAnswer === index && this.props.correct ) {
-      return 'answerCorrect';
+      return 'correct';
     } else {
-      return 'answerIncorrect';
+      return 'incorrect';
     }
   }
 
-  renderAnswers = () => {
+  render() {
     const answers = this.props.answers.map((answer, index) => {
       const selected = this.state.selectedAnswer === index;
+      const answerType = this.answerType(index);
 
       return (
-        <li key={index}>
-          <div className={this.answerClassName(index)}>
-            <Radio
-              color='primary'
-              checked={selected}
-              onChange={() => this.onChangeAnswer(index)}
-              disabled={this.props.submitted}
-            />{" "}
-            {answer.answer}
-          </div>
-          {this.props.submitted && (
-            <div className='feedback'>
-              {answer.feedback}
-            </div>
-          )}
-        </li>
+        <TextListAnswer
+          key={index}
+          answer={answer}
+          selected={selected}
+          type={answerType}
+          onChangeAnswer={this.onChangeAnswer}
+          submitted={this.props.submitted}
+        >
+          <Radio
+            color='primary'
+            checked={selected}
+            onChange={() => this.onChangeAnswer(index)}
+            disabled={this.props.submitted}
+          />
+        </TextListAnswer>
       );
     });
-    return answers;
-  };
 
-  render() {
-    return <ul className='answerList'>{this.renderAnswers()}</ul>;
+    return <ul className='answerList'>{answers}</ul>;
   }
 }
 
