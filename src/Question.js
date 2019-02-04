@@ -90,47 +90,40 @@ class Question extends React.Component {
 
   // Renders the correct question type.
   renderAnswerComponent = () => {
+    const commonProps = {
+      key: this.state.resetCount,
+      ref: this.answerComponentRef,
+      submitted: this.state.submitted,
+      onChange: this.onChange,
+      ...this.props.questionData,
+    };
+
+
     switch (this.props.questionData.type) {
       case "true-false":
         return (
           <TrueFalse
-            key={this.state.resetCount}
-            ref={this.answerComponentRef}
-            submitted={this.state.submitted}
-            {...this.props.questionData}
-            onChange={this.onChange}
             correct={this.state.correct}
+            {...commonProps}
           />
         );
       case "multiple-choice":
         return (
           <MultipleChoice
-            key={this.state.resetCount}
-            ref={this.answerComponentRef}
-            submitted={this.state.submitted}
-            {...this.props.questionData}
-            onChange={this.onChange}
             correct={this.state.correct}
+            {...commonProps}
           />
         );
       case "multiple-answer":
         return (
           <MultipleAnswer
-            key={this.state.resetCount}
-            ref={this.answerComponentRef}
-            submitted={this.state.submitted}
-            {...this.props.questionData}
-            onChange={this.onChange}
+            {...commonProps}
           />
         );
       case "calculated-numeric":
         return (
           <CalculatedNumeric
-            key={this.state.resetCount}
-            ref={this.answerComponentRef}
-            submitted={this.state.submitted}
-            {...this.props.questionData}
-            onChange={this.onChange}
+            {...commonProps}
           />
         );
       default:
