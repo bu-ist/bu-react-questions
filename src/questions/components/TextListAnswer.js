@@ -9,7 +9,6 @@ class TextListAnswer extends React.Component {
   render() {
     const answer = this.props.answer;
     const type = this.props.type;
-    const formControl = this.props.formControl
 
     let style = 'answer';
     let icon = null;
