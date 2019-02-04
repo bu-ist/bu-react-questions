@@ -6,6 +6,8 @@ import {
   CalculatedNumeric
 } from "./questions";
 import Button from '@material-ui/core/Button';
+import CorrectIcon from '@material-ui/icons/CheckCircleRounded';
+import IncorrectIcon from '@material-ui/icons/CancelRounded';
 
 import './Question.scss';
 
@@ -166,8 +168,11 @@ class Question extends React.Component {
       : feedback.incorrect;
 
     return (
-      <div className={`${this.constructor.name}__feedback`}>
-        {this.state.correct ? "✔" : "❌"} {renderedFeedback}
+      <div className={'feedback'}>
+        {this.state.correct
+          ? <CorrectIcon className='questionIconCorrect' />
+          : <IncorrectIcon className='questionIconIncorrect' />} 
+        {renderedFeedback}
       </div>
     );
   };
