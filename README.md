@@ -5,7 +5,7 @@ A react component library for self-assement questions.
 ## How to install
 
 ```
-$ npm install @carlosesilva/react-questions
+$ npm install @bostonuniversity/react-questions
 ```
 
 ## Examples
@@ -13,6 +13,9 @@ $ npm install @carlosesilva/react-questions
 See [demo/src/index.js](demo/src/index.js) for example usage.
 
 ## Changelog
+
+### v0.0.3
+Package moved to @bostonuniversity org
 
 ### v0.0.2
 

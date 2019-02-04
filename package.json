@@ -1,6 +1,6 @@
 {
-  "name": "@carlosesilva/react-questions",
-  "version": "0.0.2",
+  "name": "@bostonuniversity/react-questions",
+  "version": "0.0.3",
   "description": "react-questions React component library for questions",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -33,7 +33,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/carlosesilva/react-questions"
+    "url": "https://github.com/bu-ist/bu-react-questions"
   },
   "keywords": [
     "react-component"
