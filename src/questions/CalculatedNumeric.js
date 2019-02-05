@@ -11,19 +11,6 @@ class CalculatedNumeric extends React.Component {
     };
   }
 
-  i18nFloat(str) {
-    // Replace commas with period.
-    const commaLess = str.replace(/,/g, ".");
-    // Remove all periods minus the last one.
-    const splitOnPeriods = commaLess.split(".");
-    const i18nFloat =
-      splitOnPeriods.slice(0, -1).join("") +
-      "." +
-      splitOnPeriods[splitOnPeriods.length - 1];
-
-    return i18nFloat;
-  }
-
   isFloat = str => {
     const floatRegExp = new RegExp(/^[-+]?[0-9]*\.?[0-9]*$/);
 
@@ -36,22 +23,25 @@ class CalculatedNumeric extends React.Component {
     return false;
   };
 
-  isCorrectNumDecimalPlaces = (str, decimalPlaces) => {
+  isCorrectNumDecimalPlaces = (str, decimalPlacesAllowed) => {
     try {
-      const decimals = str.split(".")[1];
-      return decimals.length === parseInt(decimalPlaces);
+      let decimalPlaces = 0;
+      const splitOnPeriods = str.split(".");
+      if (splitOnPeriods.length === 2) {
+        decimalPlaces = splitOnPeriods[1].length;
+      }
+      return decimalPlaces === parseInt(decimalPlacesAllowed);
     } catch (error) {
       return false;
     }
   };
 
   validateAnswer = answer => {
-    const i18nFloat = this.i18nFloat(answer);
     let errors = [];
-    if (!this.isFloat(i18nFloat)) {
+    if (!this.isFloat(answer)) {
       errors.push("Invalid");
     } else if (
-      !this.isCorrectNumDecimalPlaces(i18nFloat, this.props.decimalPlaces)
+      !this.isCorrectNumDecimalPlaces(answer, this.props.decimalPlaces)
     ) {
       errors.push(
         `Please make sure your answer has ${
@@ -74,12 +64,10 @@ class CalculatedNumeric extends React.Component {
       return null;
     }
 
-    const floatAnswer = this.i18nFloat(submittedAnswer);
-
     const min = parseFloat(answer) - parseFloat(answerRange);
     const max = parseFloat(answer) + parseFloat(answerRange);
 
-    if (floatAnswer >= min && floatAnswer <= max) {
+    if (submittedAnswer >= min && submittedAnswer <= max) {
       return true;
     }
     return false;

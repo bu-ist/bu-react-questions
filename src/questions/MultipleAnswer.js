@@ -1,4 +1,9 @@
 import React from "react";
+import Checkbox from '@material-ui/core/Checkbox';
+
+import TextListAnswer from './components/TextListAnswer';
+
+import './common.scss';
 
 class MultipleAnswer extends React.Component {
   constructor(props) {
@@ -46,31 +51,46 @@ class MultipleAnswer extends React.Component {
     this.props.onChange(pristine, valid);
   };
 
-  renderAnswers = () => {
-    const answers = this.props.answers.map((answer, index) => {
-      return (
-        <li key={index}>
-          <div className={`${this.constructor.name}__answer`}>
-            <input
-              type="checkbox"
-              checked={this.state.selectedAnswers.includes(index)}
-              onChange={() => this.onChangeAnswer(index)}
-            />{" "}
-            {answer.answer}
-          </div>
-          {this.props.submitted && (
-            <div className={`${this.constructor.name}__feedback`}>
-              {answer.feedback}
-            </div>
-          )}
-        </li>
-      );
-    });
-    return answers;
-  };
+  answerType = (index) => {
+    // Calculate what type of feedback the answer should display.
+    const correct = this.props.answers[index].correct;
+
+    if ( ! this.props.submitted || ! (this.state.selectedAnswers.includes(index) || correct ) ) {
+      return 'unselected';
+    }
+
+    if ( this.state.selectedAnswers.includes(index) && correct ) {
+      return 'correct';
+    } else {
+      return 'incorrect';
+    }
+  }
 
   render() {
-    return <ul>{this.renderAnswers()}</ul>;
+    const answers = this.props.answers.map((answer, index) => {
+      const selected = this.state.selectedAnswers.includes(index);
+      const answerType = this.answerType(index);
+
+      return (
+        <TextListAnswer 
+          key={index}
+          answer={answer}
+          selected={selected}
+          type={answerType}
+          onChangeAnswer={this.onChangeAnswer}
+          submitted={this.props.submitted}
+        >
+          <Checkbox
+            color='primary'
+            checked={selected}
+            onChange={() => this.onChangeAnswer(index)}
+            disabled={this.props.submitted}
+          />
+        </TextListAnswer>
+      );
+    });
+
+    return <ul className='answerList'>{answers}</ul>;
   }
 }
 

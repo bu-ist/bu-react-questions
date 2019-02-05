@@ -3,7 +3,7 @@ import { render } from "react-dom";
 
 import { Question } from "../../src";
 
-import "../../src/Question.css";
+import "../../src/Question.scss";
 
 const trueFalseQuestionData = {
   type: "true-false",

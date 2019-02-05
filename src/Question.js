@@ -5,6 +5,11 @@ import {
   MultipleAnswer,
   CalculatedNumeric
 } from "./questions";
+import Button from '@material-ui/core/Button';
+import CorrectIcon from '@material-ui/icons/CheckCircleRounded';
+import IncorrectIcon from '@material-ui/icons/CancelRounded';
+
+import './Question.scss';
 
 class Question extends React.Component {
   constructor(props) {
@@ -26,11 +31,19 @@ class Question extends React.Component {
   onReset = event => {
     event.preventDefault();
 
-    this.setState(prevState => ({
-      ...this.initialState,
-      // Increment the reset count so that it will reset the child elements via the key prop.
-      resetCount: prevState.resetCount + 1
-    }));
+    this.setState(
+      prevState => ({
+        ...this.initialState,
+        // Increment the reset count so that it will reset the child elements via the key prop.
+        resetCount: prevState.resetCount + 1
+      }),
+      () => {
+        // Run the onReset event hook prop.
+        if (this.props.onReset) {
+          this.props.onReset();
+        }
+      }
+    );
   };
 
   // Handles the submit event.
@@ -51,11 +64,20 @@ class Question extends React.Component {
       return false;
     }
 
-    this.setState({
-      pristine: false,
-      submitted: true,
-      correct
-    });
+    this.setState(
+      {
+        pristine: false,
+        submitted: true,
+        correct
+      },
+      () => {
+        // Run the onSubmit event hook prop.
+        if (this.props.onSubmit) {
+          this.props.onSubmit();
+        }
+      }
+    );
+
     return true;
   };
 
@@ -68,45 +90,40 @@ class Question extends React.Component {
 
   // Renders the correct question type.
   renderAnswerComponent = () => {
+    const commonProps = {
+      key: this.state.resetCount,
+      ref: this.answerComponentRef,
+      submitted: this.state.submitted,
+      onChange: this.onChange,
+      ...this.props.questionData,
+    };
+
+
     switch (this.props.questionData.type) {
       case "true-false":
         return (
           <TrueFalse
-            key={this.state.resetCount}
-            ref={this.answerComponentRef}
-            submitted={this.state.submitted}
-            {...this.props.questionData}
-            onChange={this.onChange}
+            correct={this.state.correct}
+            {...commonProps}
           />
         );
       case "multiple-choice":
         return (
           <MultipleChoice
-            key={this.state.resetCount}
-            ref={this.answerComponentRef}
-            submitted={this.state.submitted}
-            {...this.props.questionData}
-            onChange={this.onChange}
+            correct={this.state.correct}
+            {...commonProps}
           />
         );
       case "multiple-answer":
         return (
           <MultipleAnswer
-            key={this.state.resetCount}
-            ref={this.answerComponentRef}
-            submitted={this.state.submitted}
-            {...this.props.questionData}
-            onChange={this.onChange}
+            {...commonProps}
           />
         );
       case "calculated-numeric":
         return (
           <CalculatedNumeric
-            key={this.state.resetCount}
-            ref={this.answerComponentRef}
-            submitted={this.state.submitted}
-            {...this.props.questionData}
-            onChange={this.onChange}
+            {...commonProps}
           />
         );
       default:
@@ -144,8 +161,11 @@ class Question extends React.Component {
       : feedback.incorrect;
 
     return (
-      <div className={`${this.constructor.name}__feedback`}>
-        {this.state.correct ? "✔" : "❌"} {renderedFeedback}
+      <div className={'feedback'}>
+        {this.state.correct
+          ? <CorrectIcon className='questionIconCorrect' />
+          : <IncorrectIcon className='questionIconIncorrect' />} 
+        {renderedFeedback}
       </div>
     );
   };
@@ -153,20 +173,22 @@ class Question extends React.Component {
   render() {
     const { header, body } = this.props.questionData;
     return (
-      <article className={this.className()}>
-        <header className={`${this.constructor.name}__header`}>{header}</header>
-        <div className={`${this.constructor.name}__body`}>{body}</div>
+      <article className='question'>
+        <header className='header'>{header}</header>
+        <div className='body'>{body}</div>
         <form onSubmit={this.onSubmit} onReset={this.onReset}>
           {this.renderAnswerComponent()}
-          {!this.state.pristine && <button type="reset">Reset</button>}
           {!this.state.submitted && (
-            <button
+            <Button
+              variant='outlined'
+              color='primary'
               type="submit"
               disabled={this.state.pristine || !this.state.valid}
             >
               Check Answer
-            </button>
+            </Button>
           )}
+          {!this.state.pristine && <Button type="reset">Reset</Button>}
         </form>
         <footer>{this.renderFeedback()}</footer>
       </article>
