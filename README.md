@@ -5,7 +5,7 @@ A react component library for self-assement questions.
 ## How to install
 
 ```
-$ npm install @carlosesilva/react-questions
+$ npm install @bostonuniversity/react-questions
 ```
 
 ## Examples
@@ -21,6 +21,9 @@ Changes include:
 - CSS styling with SASS-based stylesheets
 - Material UI based form controls and icons
 - Some component refactoring, including a new TextListAnswer component
+
+### v0.0.3
+Package moved to @bostonuniversity org
 
 ### v0.0.2
 
