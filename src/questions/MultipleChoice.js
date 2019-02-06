@@ -71,7 +71,7 @@ class MultipleChoice extends React.Component {
       );
     });
 
-    return <ul className='answerList'>{answers}</ul>;
+    return <ul className='answer-list'>{answers}</ul>;
   }
 }
 

@@ -15,10 +15,10 @@ class TextListAnswer extends React.Component {
 
     if (type === 'correct') {
       style = 'answerCorrect';
-      icon = <CorrectIcon className='feedbackIconCorrect' />;
+      icon = <CorrectIcon className='feedback-icon-correct' />;
     } else if (type === 'incorrect') {
       style = 'answerIncorrect';
-      icon = <IncorrectIcon className='feedbackIconIncorrect' />;
+      icon = <IncorrectIcon className='feedback-icon-incorrect' />;
     }
 
     return(

@@ -163,8 +163,8 @@ class Question extends React.Component {
     return (
       <div className={'feedback'}>
         {this.state.correct
-          ? <CorrectIcon className='questionIconCorrect' />
-          : <IncorrectIcon className='questionIconIncorrect' />} 
+          ? <CorrectIcon className='question-icon-correct' />
+          : <IncorrectIcon className='question-icon-incorrect' />} 
         {renderedFeedback}
       </div>
     );

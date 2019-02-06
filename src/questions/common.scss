@@ -1,4 +1,4 @@
-.answerList {
+.answer-list {
     list-style-type: none;
     padding-left: 2.5em;
 
@@ -27,7 +27,7 @@
         }
     }
 
-    .feedbackIcon {
+    .feedback-icon {
         position: absolute;
         font-size: 2em;
         left: auto;
@@ -35,13 +35,13 @@
         margin-top: .36em;
         margin-left: -1.05em;
 
-        &Correct {
-            @extend .feedbackIcon;
+        &-correct {
+            @extend .feedback-icon;
             color: rgb(75, 173, 56);
         }
 
-        &Incorrect {
-            @extend .feedbackIcon;
+        &-incorrect {
+            @extend .feedback-icon;
             color: rgb(170, 50, 50);
         }
     }
