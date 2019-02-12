@@ -14,11 +14,11 @@ class TextListAnswer extends React.Component {
     let icon = null;
 
     if (type === 'correct') {
-      style = 'answerCorrect';
-      icon = <CorrectIcon className='feedbackIconCorrect' />;
+      style = 'answer-correct';
+      icon = <CorrectIcon className='feedback-icon-correct' />;
     } else if (type === 'incorrect') {
-      style = 'answerIncorrect';
-      icon = <IncorrectIcon className='feedbackIconIncorrect' />;
+      style = 'answer-incorrect';
+      icon = <IncorrectIcon className='feedback-icon-incorrect' />;
     }
 
     return(
