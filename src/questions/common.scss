@@ -16,12 +16,12 @@
         box-sizing: border-box;
         border-color: rgba(255,255,255,0);
     
-        &Correct {
+        &-correct {
             @extend .answer;
             border-color: rgb(75, 173, 56);
         }
     
-        &Incorrect {
+        &-incorrect {
             @extend .answer;
             border-color: rgb(170, 50, 50);
         }
