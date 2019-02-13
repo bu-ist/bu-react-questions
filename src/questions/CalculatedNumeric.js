@@ -39,7 +39,7 @@ class CalculatedNumeric extends React.Component {
   validateAnswer = (answer) => {
     const { decimalPlaces } = this.props;
 
-    let errors = [];
+    const errors = [];
     if (!this.isFloat(answer)) {
       errors.push('Invalid');
     } else if (
