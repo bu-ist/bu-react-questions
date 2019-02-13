@@ -8,7 +8,13 @@ import './common.scss';
 
 class MultipleChoice extends React.Component {
   static propTypes = {
-    answers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    answers: PropTypes.arrayOf(
+      PropTypes.shape({
+        answer: PropTypes.node.isRequired,
+        feedback: PropTypes.node,
+        correct: PropTypes.bool,
+      }),
+    ).isRequired,
     submitted: PropTypes.bool,
     correct: PropTypes.bool,
     onChange: PropTypes.func,

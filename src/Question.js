@@ -15,12 +15,12 @@ import './Question.scss';
 class Question extends React.Component {
   static propTypes = {
     questionData: PropTypes.shape({
-      type: PropTypes.string,
+      type: PropTypes.string.isRequired,
       header: PropTypes.node,
       body: PropTypes.node,
       answers: PropTypes.arrayOf(
         PropTypes.shape({
-          answer: PropTypes.node,
+          answer: PropTypes.node.isRequired,
           feedback: PropTypes.node,
           correct: PropTypes.bool,
         }),
