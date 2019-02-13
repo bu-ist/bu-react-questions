@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import CorrectIcon from '@material-ui/icons/CheckCircleRounded';
@@ -16,34 +16,18 @@ class Question extends React.Component {
   static propTypes = {
     questionData: PropTypes.shape({
       type: PropTypes.string,
-      header: PropTypes.oneOfType([
-        PropTypes.node,
-        PropTypes.element,
-      ]),
-      body: PropTypes.oneOfType([
-        PropTypes.node,
-        PropTypes.element,
-      ]),
-      answers: PropTypes.arrayOf(PropTypes.shape({
-        answer: PropTypes.oneOfType([
-          PropTypes.node,
-          PropTypes.element,
-        ]),
-        feedback: PropTypes.oneOfType([
-          PropTypes.node,
-          PropTypes.element,
-        ]),
-        correct: PropTypes.bool,
-      })),
+      header: PropTypes.node,
+      body: PropTypes.node,
+      answers: PropTypes.arrayOf(
+        PropTypes.shape({
+          answer: PropTypes.node,
+          feedback: PropTypes.node,
+          correct: PropTypes.bool,
+        }),
+      ),
       feedback: PropTypes.shape({
-        correct: PropTypes.oneOfType([
-          PropTypes.node,
-          PropTypes.element,
-        ]),
-        incorrect: PropTypes.oneOfType([
-          PropTypes.node,
-          PropTypes.element,
-        ]),
+        correct: PropTypes.node,
+        incorrect: PropTypes.node,
       }),
     }).isRequired,
     onReset: PropTypes.func,

@@ -10,16 +10,14 @@ class MultipleAnswer extends React.Component {
   static propTypes = {
     answers: PropTypes.arrayOf(PropTypes.object).isRequired,
     submitted: PropTypes.bool,
-    correct: PropTypes.bool,
     onChange: PropTypes.func,
   };
 
   static defaultProps = {
     submitted: false,
-    correct: null,
     onChange: null,
   };
-  
+
   constructor(props) {
     super(props);
     this.state = {
