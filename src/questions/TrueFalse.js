@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 import Radio from '@material-ui/core/Radio';
 
@@ -29,10 +29,14 @@ class TrueFalse extends React.Component {
   }
 
   isCorrect = () => {
-    return this.props.answers[this.state.selectedAnswer].correct;
+    const { answers } = this.props;
+    const { selectedAnswer } = this.state;
+
+    return answers[selectedAnswer].correct;
   };
 
-  onChangeAnswer = index => {
+  onChangeAnswer = (index) => {
+    const { onChange } = this.props;
     const pristine = false;
 
     // Check if answer is valid.
@@ -45,45 +49,51 @@ class TrueFalse extends React.Component {
     });
 
     // Update question wrapper component state.
-    this.props.onChange(pristine, valid);
+    onChange(pristine, valid);
   };
 
   answerType = (index) => {
+    const { submitted, correct } = this.props;
+    const { selectedAnswer } = this.state;
+
     // Calculate what type of feedback the answer should display.
-    if ( ! this.props.submitted || this.state.selectedAnswer !== index ) {
+    if (!submitted || selectedAnswer !== index) {
       return 'unselected';
     }
 
-    if ( this.state.selectedAnswer === index && this.props.correct ) {
+    if ((selectedAnswer === index) && correct) {
       return 'correct';
-    } else {
-      return 'incorrect';
     }
+
+    return 'incorrect';
   }
 
   render() {
-    const answers = this.props.answers.map((answer, index) => {
+    const { answers, submitted: submitProp } = this.props;
+    const { selectedAnswer } = this.state;
+
+    const renderedAnswers = answers.map((answer, index) => {
       const answerType = this.answerType(index);
 
       return (
-        <TextListAnswer 
+        <TextListAnswer
           key={index}
           answer={answer}
           type={answerType}
           onChangeAnswer={this.onChangeAnswer}
-          submitted={this.props.submitted}
+          submitted={submitProp}
         >
           <Radio
-            color='primary'
-            checked={this.state.selectedAnswer === index}
+            color="primary"
+            checked={selectedAnswer === index}
             onChange={() => this.onChangeAnswer(index)}
-            disabled={this.props.submitted}
+            disabled={submitProp}
           />
         </TextListAnswer>
       );
     });
-  
-    return <ul className='answer-list'>{answers}</ul>;
+
+    return <ul className="answer-list">{renderedAnswers}</ul>;
   }
 }
 

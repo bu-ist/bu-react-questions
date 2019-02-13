@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 
 class CalculatedNumeric extends React.Component {
@@ -21,14 +21,14 @@ class CalculatedNumeric extends React.Component {
       pristine: true,
       valid: null,
       errors: [],
-      answer: ""
+      answer: '',
     };
   }
 
-  isFloat = str => {
+  isFloat = (str) => {
     const floatRegExp = new RegExp(/^[-+]?[0-9]*\.?[0-9]*$/);
 
-    if (str !== "") {
+    if (str !== '') {
       if (floatRegExp.test(str)) {
         return true;
       }
@@ -40,27 +40,29 @@ class CalculatedNumeric extends React.Component {
   isCorrectNumDecimalPlaces = (str, decimalPlacesAllowed) => {
     try {
       let decimalPlaces = 0;
-      const splitOnPeriods = str.split(".");
+      const splitOnPeriods = str.split('.');
       if (splitOnPeriods.length === 2) {
         decimalPlaces = splitOnPeriods[1].length;
       }
-      return decimalPlaces === parseInt(decimalPlacesAllowed);
+      return decimalPlaces === parseInt(decimalPlacesAllowed, 10);
     } catch (error) {
       return false;
     }
   };
 
-  validateAnswer = answer => {
-    let errors = [];
+  validateAnswer = (answer) => {
+    const { decimalPlaces } = this.props;
+
+    const errors = [];
     if (!this.isFloat(answer)) {
-      errors.push("Invalid");
+      errors.push('Invalid');
     } else if (
-      !this.isCorrectNumDecimalPlaces(answer, this.props.decimalPlaces)
+      !this.isCorrectNumDecimalPlaces(answer, decimalPlaces)
     ) {
       errors.push(
         `Please make sure your answer has ${
-          this.props.decimalPlaces
-        } decimal places`
+          decimalPlaces
+        } decimal places`,
       );
     }
     return errors;
@@ -68,7 +70,7 @@ class CalculatedNumeric extends React.Component {
 
   isCorrect = () => {
     const { answer, answerRange } = this.props;
-    const submittedAnswer = this.state.answer;
+    const { answer: submittedAnswer } = this.state;
 
     const errors = this.validateAnswer(submittedAnswer);
 
@@ -87,7 +89,9 @@ class CalculatedNumeric extends React.Component {
     return false;
   };
 
-  onChangeAnswer = answer => {
+  onChangeAnswer = (answer) => {
+    const { onChange } = this.props;
+
     const pristine = false;
 
     // Check if answer is valid.
@@ -99,32 +103,34 @@ class CalculatedNumeric extends React.Component {
       pristine,
       valid,
       errors,
-      answer
+      answer,
     });
 
     // Update question wrapper component state.
-    this.props.onChange(pristine, valid);
+    onChange(pristine, valid);
   };
 
   render() {
+    const { valid, errors, answer } = this.state;
+
     return (
       <div>
         <input
           type="text"
-          value={this.state.answer}
+          value={answer}
           placeholder="Enter answer here"
           onChange={event => this.onChangeAnswer(event.target.value)}
         />
-        {!this.state.valid && (
+        {!valid && (
           <div>
             <ul>
-              {this.state.errors.map((error, index) => (
+              {errors.map((error, index) => (
                 <li key={index}>{error}</li>
               ))}
             </ul>
           </div>
         )}
-        {this.state.valid}
+        {valid}
       </div>
     );
   }
