@@ -119,13 +119,12 @@ function Demo() {
   return (
     <div>
       <h1>react-questions Demo</h1>
-      <Question questionData={trueFalseQuestionData} />
-      <Question questionData={multipleChoiceQuestionData} />
-      <Question questionData={multipleAnswerQuestionData} />
-      <Question questionData={calculatedNumericQuestionData} />
+      <Question {...trueFalseQuestionData} />
+      <Question {...multipleChoiceQuestionData} />
+      <Question {...multipleAnswerQuestionData} />
+      <Question {...calculatedNumericQuestionData} />
     </div>
   );
 }
-
 
 render(<Demo />, document.querySelector('#demo'));

@@ -9,27 +9,13 @@ import {
   MultipleAnswer,
   CalculatedNumeric,
 } from './questions';
+import Types from './types';
 
 import './Question.scss';
 
 class Question extends React.Component {
   static propTypes = {
-    questionData: PropTypes.shape({
-      type: PropTypes.string.isRequired,
-      header: PropTypes.node,
-      body: PropTypes.node,
-      answers: PropTypes.arrayOf(
-        PropTypes.shape({
-          answer: PropTypes.node.isRequired,
-          feedback: PropTypes.node,
-          correct: PropTypes.bool,
-        }),
-      ),
-      feedback: PropTypes.shape({
-        correct: PropTypes.node,
-        incorrect: PropTypes.node,
-      }),
-    }).isRequired,
+    ...Types.questionData,
     onReset: PropTypes.func,
     onSubmit: PropTypes.func,
   };
@@ -122,7 +108,9 @@ class Question extends React.Component {
 
   // Renders the correct question type.
   renderAnswerComponent = () => {
-    const { questionData } = this.props;
+    const {
+      type, header, body, answer, answers, feedback,
+    } = this.props;
     const { resetCount, submitted: submitState, correct } = this.state;
 
     const commonProps = {
@@ -130,10 +118,15 @@ class Question extends React.Component {
       ref: this.answerComponentRef,
       submitted: submitState,
       onChange: this.onChange,
-      ...questionData,
+      type,
+      header,
+      body,
+      answer,
+      answers,
+      feedback,
     };
 
-    switch (questionData.type) {
+    switch (type) {
       case 'true-false':
         return (
           <TrueFalse
@@ -161,9 +154,7 @@ class Question extends React.Component {
           />
         );
       default:
-        console.error(
-          `'${questionData.type}' is not a recognized question type.`,
-        );
+        console.error(`'${type}' is not a recognized question type.`);
         return null;
     }
   };
@@ -189,12 +180,11 @@ class Question extends React.Component {
 
   renderFeedback = () => {
     const { correct } = this.state;
-    const { questionData } = this.props;
+    const { feedback } = this.props;
 
     if (correct === null) {
       return null;
     }
-    const { feedback } = questionData;
     const renderedFeedback = correct
       ? feedback.correct
       : feedback.incorrect;
@@ -210,10 +200,8 @@ class Question extends React.Component {
   };
 
   render() {
-    const { questionData } = this.props;
+    const { header, body } = this.props;
     const { pristine, submitted, valid } = this.state;
-
-    const { header, body } = questionData;
 
     return (
       <article className="question">

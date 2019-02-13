@@ -3,18 +3,13 @@ import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import TextListAnswer from './components/TextListAnswer';
+import Types from '../types';
 
 import './common.scss';
 
 class MultipleAnswer extends React.Component {
   static propTypes = {
-    answers: PropTypes.arrayOf(
-      PropTypes.shape({
-        answer: PropTypes.node.isRequired,
-        feedback: PropTypes.node,
-        correct: PropTypes.bool,
-      }),
-    ).isRequired,
+    answers: Types.questionData.answers.isRequired,
     submitted: PropTypes.bool,
     onChange: PropTypes.func,
   };
