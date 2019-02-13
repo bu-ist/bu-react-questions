@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import Radio from '@material-ui/core/Radio';
 
 import TextListAnswer from './components/TextListAnswer';
@@ -6,6 +7,13 @@ import TextListAnswer from './components/TextListAnswer';
 import './common.scss';
 
 class TrueFalse extends React.Component {
+  static propTypes = {
+    answers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    submitted: PropTypes.bool,
+    correct: PropTypes.bool,
+    onChange: PropTypes.func,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
