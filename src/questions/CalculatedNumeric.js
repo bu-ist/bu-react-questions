@@ -1,6 +1,20 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 class CalculatedNumeric extends React.Component {
+  static propTypes = {
+    answer: PropTypes.string.isRequired,
+    answerRange: PropTypes.string,
+    decimalPlaces: PropTypes.string,
+    onChange: PropTypes.func,
+  };
+
+  static defaultProps = {
+    answerRange: '0',
+    decimalPlaces: '0',
+    onChange: null,
+  };
+
   constructor(props) {
     super(props);
     this.state = {

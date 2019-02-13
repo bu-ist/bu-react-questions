@@ -14,6 +14,12 @@ class TrueFalse extends React.Component {
     onChange: PropTypes.func,
   };
 
+  static defaultProps = {
+    submitted: false,
+    correct: null,
+    onChange: null,
+  };
+
   constructor(props) {
     super(props);
     this.state = {

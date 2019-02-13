@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {
   TrueFalse,
   MultipleChoice,
@@ -12,6 +13,48 @@ import IncorrectIcon from '@material-ui/icons/CancelRounded';
 import './Question.scss';
 
 class Question extends React.Component {
+  static propTypes = {
+    questionData: PropTypes.shape({
+      type: PropTypes.string,
+      header: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.element,
+      ]),
+      body: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.element,
+      ]),
+      answers: PropTypes.arrayOf(PropTypes.shape({
+        answer: PropTypes.oneOfType([
+          PropTypes.node,
+          PropTypes.element,
+        ]),
+        feedback: PropTypes.oneOfType([
+          PropTypes.node,
+          PropTypes.element,
+        ]),
+        correct: PropTypes.bool,
+      })),
+      feedback: PropTypes.shape({
+        correct: PropTypes.oneOfType([
+          PropTypes.node,
+          PropTypes.element,
+        ]),
+        incorrect: PropTypes.oneOfType([
+          PropTypes.node,
+          PropTypes.element,
+        ]),
+      }),
+    }).isRequired,
+    onReset: PropTypes.func,
+    onSubmit: PropTypes.func,
+  };
+
+  static defaultProps = {
+    onReset: null,
+    onSubmit: null,
+  };
+
   constructor(props) {
     super(props);
     this.answerComponentRef = React.createRef();
