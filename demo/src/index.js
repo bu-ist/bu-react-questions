@@ -106,7 +106,7 @@ const calculatedNumericQuestionData = {
   type: "calculated-numeric",
   header: "Submit the correct answer:",
   body: "What is the result of 1/3",
-  answer: "0.33",
+  answer: "0.333",
   answerRange: "0.001",
   decimalPlaces: "3",
   feedback: {
