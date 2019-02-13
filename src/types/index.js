@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const questionData = {
-  type: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['true-false', 'multiple-answer', 'multiple-choice', 'calculated-numeric']),
   header: PropTypes.node,
   body: PropTypes.node,
   answer: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
