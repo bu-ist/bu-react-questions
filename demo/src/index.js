@@ -115,6 +115,45 @@ const calculatedNumericQuestionData = {
   },
 };
 
+
+const matchingQuestionData = {
+  type: 'matching',
+  header: 'Please select all correct answers',
+  body: 'How many toes can a two toed sloth have?',
+  answers: [
+    {
+      answer: '6',
+      feedback: 'You are correct! They some of them can have six.',
+      correct: true,
+    },
+    {
+      answer: '0',
+      feedback: 'Nope, definitely more than that',
+      correct: false,
+    },
+    {
+      answer: '10',
+      feedback: 'Nope, that is too many',
+      correct: false,
+    },
+    {
+      answer: '8',
+      feedback: 'You are correct! They some of them can have eight.',
+      correct: true,
+    },
+    {
+      answer: '100',
+      feedback: 'Really?',
+      correct: false,
+    },
+  ],
+  feedback: {
+    correct: 'You picked all of the correct answers!',
+    incorrect:
+      'Sorry, see the feedback below your answers for why it was wrong.',
+  },
+};
+
 function Demo() {
   return (
     <div>
@@ -123,6 +162,7 @@ function Demo() {
       <Question {...multipleChoiceQuestionData} />
       <Question {...multipleAnswerQuestionData} />
       <Question {...calculatedNumericQuestionData} />
+      <Question {...matchingQuestionData} />
     </div>
   );
 }

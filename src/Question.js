@@ -8,10 +8,12 @@ import {
   MultipleChoice,
   MultipleAnswer,
   CalculatedNumeric,
+  //Matching,
 } from './questions';
 import Types from './types';
 
 import './Question.scss';
+import Matching from './questions/Matching';
 
 class Question extends React.Component {
   static propTypes = {
@@ -150,6 +152,12 @@ class Question extends React.Component {
       case 'calculated-numeric':
         return (
           <CalculatedNumeric
+            {...commonProps}
+          />
+        );
+      case 'matching':
+        return (
+          <Matching
             {...commonProps}
           />
         );
