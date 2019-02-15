@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CorrectIcon from '@material-ui/icons/CheckCircleRounded';
 import IncorrectIcon from '@material-ui/icons/CancelRounded';
 
@@ -39,5 +40,18 @@ function TextListAnswer(props) {
     </li>
   );
 }
-
+TextListAnswer.propTypes = {
+  answer: PropTypes.shape({
+    answer: PropTypes.node,
+    feedback: PropTypes.node,
+    correct: PropTypes.bool,
+  }).isRequired,
+  type: PropTypes.string.isRequired,
+  submitted: PropTypes.bool,
+  children: PropTypes.node,
+};
+TextListAnswer.defaultProps = {
+  submitted: false,
+  children: null,
+};
 export default TextListAnswer;

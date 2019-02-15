@@ -1,11 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import TextListAnswer from './components/TextListAnswer';
+import Types from '../types';
 
 import './common.scss';
 
 class MultipleAnswer extends React.Component {
+  static propTypes = {
+    answers: Types.questionData.answers.isRequired,
+    submitted: PropTypes.bool,
+    onChange: PropTypes.func,
+  };
+
+  static defaultProps = {
+    submitted: false,
+    onChange: null,
+  };
+
   constructor(props) {
     super(props);
     this.state = {

@@ -1,11 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Radio from '@material-ui/core/Radio';
 
 import TextListAnswer from './components/TextListAnswer';
+import Types from '../types';
 
 import './common.scss';
 
 class MultipleChoice extends React.Component {
+  static propTypes = {
+    answers: Types.questionData.answers.isRequired,
+    submitted: PropTypes.bool,
+    correct: PropTypes.bool,
+    onChange: PropTypes.func,
+  };
+
+  static defaultProps = {
+    submitted: false,
+    correct: null,
+    onChange: null,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
