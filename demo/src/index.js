@@ -118,33 +118,33 @@ const calculatedNumericQuestionData = {
 
 const matchingQuestionData = {
   type: 'matching',
-  header: 'Please select all correct answers',
-  body: 'How many toes can a two toed sloth have?',
+  header: 'Match the words',
+  body: 'Match the word in Spanish to the corresponding word in English',
   answers: [
     {
-      answer: '6',
-      feedback: 'You are correct! They some of them can have six.',
+      answer: 'abuela',
+      feedback: 'grandmother',
       correct: true,
     },
     {
-      answer: '0',
-      feedback: 'Nope, definitely more than that',
-      correct: false,
-    },
-    {
-      answer: '10',
-      feedback: 'Nope, that is too many',
-      correct: false,
-    },
-    {
-      answer: '8',
-      feedback: 'You are correct! They some of them can have eight.',
+      answer: 'comida',
+      feedback: 'food',
       correct: true,
     },
     {
-      answer: '100',
-      feedback: 'Really?',
-      correct: false,
+      answer: 'manzana',
+      feedback: 'apple',
+      correct: true,
+    },
+    {
+      answer: 'cielo',
+      feedback: 'sky',
+      correct: true,
+    },
+    {
+      answer: 'mesa',
+      feedback: 'table',
+      correct: true,
     },
   ],
   feedback: {
