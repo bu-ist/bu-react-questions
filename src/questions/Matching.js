@@ -115,6 +115,7 @@ class Matching extends React.Component {
 
     return (
       <div className="matching-area">
+        <PromptBox answers={answers} />
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
@@ -150,6 +151,16 @@ class Matching extends React.Component {
       </div>
     );
   }
+}
+
+function PromptBox(props) {
+  const { answers } = props;
+
+  const items = answers.map(item => <div className="item-prompt">{item.feedback}</div>);
+
+  return (
+    <div className="item-list">{items}</div>
+  );
 }
 
 export default Matching;
