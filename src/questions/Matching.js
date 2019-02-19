@@ -45,8 +45,14 @@ class Matching extends React.Component {
 
   constructor(props) {
     super(props);
+
+    // Sort answers by initial order state, without mutating original array.
+    const initialAnswersOrder = [...props.answers].sort((a, b) => (
+      parseFloat(a.order) - parseFloat(b.order)
+    ));
+
     this.state = {
-      items: props.answers,
+      items: initialAnswersOrder,
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
