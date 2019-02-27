@@ -8,6 +8,7 @@ import {
   MultipleChoice,
   MultipleAnswer,
   CalculatedNumeric,
+  Matching,
 } from './questions';
 import Types from './types';
 
@@ -150,6 +151,12 @@ class Question extends React.Component {
       case 'calculated-numeric':
         return (
           <CalculatedNumeric
+            {...commonProps}
+          />
+        );
+      case 'matching':
+        return (
+          <Matching
             {...commonProps}
           />
         );

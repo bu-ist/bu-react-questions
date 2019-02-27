@@ -1,0 +1,20 @@
+.matching-area {
+    display: flex;
+
+    .item-list {
+        width: 250px;
+        padding: 8px;
+        background: #f2f2f2;
+
+        .item, %item {
+            padding: 16px;
+            margin: 0 0 8px 0;
+            user-select: none;
+
+            &-prompt {
+                @extend %item;
+                background: #ececec;
+            }
+        }
+    }    
+}
