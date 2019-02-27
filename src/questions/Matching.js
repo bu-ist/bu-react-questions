@@ -76,9 +76,15 @@ class Matching extends React.Component {
 
   isCorrect = () => {
     const { answers } = this.props;
-    const { selectedAnswer } = this.state;
+    const { items } = this.state;
 
-    return answers[selectedAnswer].correct;
+    // Compare the current item state with answer keys.
+    const checkAnswers = answers.map((answer, index) => answer.order === items[index].order);
+
+    // Check for false matches between current state and answer key.
+    const correct = checkAnswers.every(x => x);
+
+    return correct;
   };
 
   onChangeAnswer = (index) => {
