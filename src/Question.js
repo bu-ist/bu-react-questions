@@ -8,12 +8,11 @@ import {
   MultipleChoice,
   MultipleAnswer,
   CalculatedNumeric,
-  //Matching,
+  Matching,
 } from './questions';
 import Types from './types';
 
 import './Question.scss';
-import Matching from './questions/Matching';
 
 class Question extends React.Component {
   static propTypes = {
