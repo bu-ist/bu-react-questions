@@ -58,6 +58,15 @@ class Matching extends React.Component {
   }
 
   onDragEnd(result) {
+    const { onChange } = this.props;
+
+    const pristine = false;
+
+    // Check if answer is valid.
+    const valid = true;
+
+    onChange(pristine, valid);
+
     // dropped outside the list
     if (!result.destination) {
       return;
