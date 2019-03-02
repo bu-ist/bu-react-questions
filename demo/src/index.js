@@ -155,7 +155,7 @@ const matchingQuestionData = {
   feedback: {
     correct: 'You picked all of the correct answers!',
     incorrect:
-      'Sorry, see the feedback below your answers for why it was wrong.',
+      'Sorry, you did not get all of them right.',
   },
 };
 

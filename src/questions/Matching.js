@@ -96,19 +96,13 @@ class Matching extends React.Component {
     return correct;
   };
 
-  onChangeAnswer = (index) => {
+  onChangeAnswer = () => {
     const { onChange } = this.props;
 
     const pristine = false;
 
     // Check if answer is valid.
     const valid = true;
-
-    // Update component state.
-    this.setState({
-      pristine,
-      selectedAnswer: index,
-    });
 
     // Update question wrapper component state.
     onChange(pristine, valid);
@@ -132,7 +126,6 @@ class Matching extends React.Component {
 
   render() {
     const { answers, submitted } = this.props;
-    const { selectedAnswer } = this.state;
 
     return (
       <div className="matching-area">
