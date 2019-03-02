@@ -59,6 +59,7 @@ class Matching extends React.Component {
 
   onDragEnd(result) {
     const { onChange } = this.props;
+    const { items } = this.state;
 
     const pristine = false;
 
@@ -72,14 +73,14 @@ class Matching extends React.Component {
       return;
     }
 
-    const items = reorder(
-      this.state.items,
+    const newItems = reorder(
+      items,
       result.source.index,
       result.destination.index,
     );
 
     this.setState({
-      items,
+      items: newItems,
     });
   }
 
@@ -126,6 +127,7 @@ class Matching extends React.Component {
 
   render() {
     const { answers, submitted } = this.props;
+    const { items } = this.state;
 
     return (
       <div className="matching-area">
@@ -138,7 +140,7 @@ class Matching extends React.Component {
                 ref={provided.innerRef}
                 style={getListStyle(snapshot.isDraggingOver)}
               >
-                {this.state.items.map((item, index) => (
+                {items.map((item, index) => (
                   <Draggable
                     key={item.answer}
                     draggableId={item.answer}
@@ -181,5 +183,15 @@ function PromptBox(props) {
     <div className="item-list">{items}</div>
   );
 }
+
+PromptBox.propTypes = {
+  answers: PropTypes.arrayOf(
+    PropTypes.shape({
+      answer: PropTypes.node,
+      feedback: PropTypes.node,
+      order: PropTypes.number,
+    }),
+  ).isRequired,
+};
 
 export default Matching;
