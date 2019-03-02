@@ -139,7 +139,12 @@ class Matching extends React.Component {
                 style={getListStyle(snapshot.isDraggingOver)}
               >
                 {this.state.items.map((item, index) => (
-                  <Draggable key={item.answer} draggableId={item.answer} index={index}>
+                  <Draggable
+                    key={item.answer}
+                    draggableId={item.answer}
+                    index={index}
+                    isDragDisabled={submitted}
+                  >
                     {(provided, snapshot) => (
                       <div
                         className="item"
