@@ -124,31 +124,26 @@ const matchingQuestionData = {
     {
       answer: 'abuela',
       feedback: 'grandmother',
-      correct: true,
       order: 3,
     },
     {
       answer: 'comida',
       feedback: 'food',
-      correct: true,
       order: 1,
     },
     {
       answer: 'manzana',
       feedback: 'apple',
-      correct: true,
       order: 5,
     },
     {
       answer: 'cielo',
       feedback: 'sky',
-      correct: true,
       order: 2,
     },
     {
       answer: 'mesa',
       feedback: 'table',
-      correct: true,
       order: 4,
     },
   ],
