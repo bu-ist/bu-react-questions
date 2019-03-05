@@ -14,6 +14,20 @@ See [demo/src/index.js](demo/src/index.js) for example usage.
 
 ## Changelog
 
+### v0.0.5
+
+This is a breaking change that changes the Question component's prop signature from having a single questionData prop to exposing all of the previous questionData properties as individual props.  This allows us to have more flexibility when defining the PropTypes in a separate file and sharing them between different components.
+
+ To pass the question data as individual props, it is possible to use a [spread operator as used here in the BULB plugin.](https://github.com/bu-ist/bu-learning-blocks/commit/e27a4e9d3fa6c383b0aaab79b337ae7036225ed2)
+
+Changes include:
+
+- PropType definitions
+- ESLint setup with AirBNB style guide and Babel parsing
+- Code style updates
+- CSS updates with SASS placeholders and hyphen-case
+
+
 ### v0.0.4
 
 Changes include:
