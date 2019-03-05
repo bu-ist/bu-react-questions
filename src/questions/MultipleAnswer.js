@@ -1,25 +1,41 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import TextListAnswer from './components/TextListAnswer';
+import Types from '../types';
 
 import './common.scss';
 
 class MultipleAnswer extends React.Component {
+  static propTypes = {
+    answers: Types.questionData.answers.isRequired,
+    submitted: PropTypes.bool,
+    onChange: PropTypes.func,
+  };
+
+  static defaultProps = {
+    submitted: false,
+    onChange: null,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       pristine: true,
-      selectedAnswers: []
+      selectedAnswers: [],
     };
   }
 
   isCorrect = () => {
     let correct = true;
-    this.props.answers.forEach((answer, index) => {
+    const { answers } = this.props;
+    const { selectedAnswers } = this.state;
+
+    answers.forEach((answer, index) => {
       if (
-        (answer.correct && !this.state.selectedAnswers.includes(index)) ||
-        (!answer.correct && this.state.selectedAnswers.includes(index))
+        (answer.correct && !selectedAnswers.includes(index))
+        || (!answer.correct && selectedAnswers.includes(index))
       ) {
         correct = false;
       }
@@ -27,70 +43,78 @@ class MultipleAnswer extends React.Component {
     return correct;
   };
 
-  onChangeAnswer = index => {
+  onChangeAnswer = (index) => {
     const pristine = false;
+    const { selectedAnswers } = this.state;
+    const { onChange } = this.props;
 
     // Check if answer is valid.
     const valid = true;
 
     // Toggle selected answer.
     let newSelectedAnswers;
-    if (this.state.selectedAnswers.includes(index)) {
-      newSelectedAnswers = this.state.selectedAnswers.filter(i => i !== index);
+    if (selectedAnswers.includes(index)) {
+      newSelectedAnswers = selectedAnswers.filter(i => i !== index);
     } else {
-      newSelectedAnswers = [...this.state.selectedAnswers, index];
+      newSelectedAnswers = [...selectedAnswers, index];
     }
 
     // Update component state.
     this.setState({
       pristine,
-      selectedAnswers: newSelectedAnswers
+      selectedAnswers: newSelectedAnswers,
     });
 
     // Update question wrapper component state.
-    this.props.onChange(pristine, valid);
+    onChange(pristine, valid);
   };
 
   answerType = (index) => {
-    // Calculate what type of feedback the answer should display.
-    const correct = this.props.answers[index].correct;
+    const { answers, submitted } = this.props;
+    const { selectedAnswers } = this.state;
 
-    if ( ! this.props.submitted || ! (this.state.selectedAnswers.includes(index) || correct ) ) {
+    // Calculate what type of feedback the answer should display.
+    const { correct } = answers[index];
+
+    if (!submitted || !(selectedAnswers.includes(index) || correct)) {
       return 'unselected';
     }
 
-    if ( this.state.selectedAnswers.includes(index) && correct ) {
+    if (selectedAnswers.includes(index) && correct) {
       return 'correct';
-    } else {
-      return 'incorrect';
     }
+
+    return 'incorrect';
   }
 
   render() {
-    const answers = this.props.answers.map((answer, index) => {
-      const selected = this.state.selectedAnswers.includes(index);
+    const { answers, submitted } = this.props;
+    const { selectedAnswers } = this.state;
+
+    const renderAnswers = answers.map((answer, index) => {
+      const selected = selectedAnswers.includes(index);
       const answerType = this.answerType(index);
 
       return (
-        <TextListAnswer 
+        <TextListAnswer
           key={index}
           answer={answer}
           selected={selected}
           type={answerType}
           onChangeAnswer={this.onChangeAnswer}
-          submitted={this.props.submitted}
+          submitted={submitted}
         >
           <Checkbox
-            color='primary'
+            color="primary"
             checked={selected}
             onChange={() => this.onChangeAnswer(index)}
-            disabled={this.props.submitted}
+            disabled={submitted}
           />
         </TextListAnswer>
       );
     });
 
-    return <ul className='answerList'>{answers}</ul>;
+    return <ul className="answer-list">{renderAnswers}</ul>;
   }
 }
 

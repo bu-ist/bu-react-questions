@@ -1,17 +1,30 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import CorrectIcon from '@material-ui/icons/CheckCircleRounded';
+import IncorrectIcon from '@material-ui/icons/CancelRounded';
 import {
   TrueFalse,
   MultipleChoice,
   MultipleAnswer,
-  CalculatedNumeric
-} from "./questions";
-import Button from '@material-ui/core/Button';
-import CorrectIcon from '@material-ui/icons/CheckCircleRounded';
-import IncorrectIcon from '@material-ui/icons/CancelRounded';
+  CalculatedNumeric,
+} from './questions';
+import Types from './types';
 
 import './Question.scss';
 
 class Question extends React.Component {
+  static propTypes = {
+    ...Types.questionData,
+    onReset: PropTypes.func,
+    onSubmit: PropTypes.func,
+  };
+
+  static defaultProps = {
+    onReset: null,
+    onSubmit: null,
+  };
+
   constructor(props) {
     super(props);
     this.answerComponentRef = React.createRef();
@@ -20,36 +33,41 @@ class Question extends React.Component {
       valid: null,
       submitted: false,
       correct: null,
-      resetCount: 0
+      resetCount: 0,
     };
     this.state = {
-      ...this.initialState
+      ...this.initialState,
     };
   }
 
   // Handles the reset event.
-  onReset = event => {
+  onReset = (event) => {
+    const { onReset } = this.props;
+
     event.preventDefault();
 
     this.setState(
       prevState => ({
         ...this.initialState,
         // Increment the reset count so that it will reset the child elements via the key prop.
-        resetCount: prevState.resetCount + 1
+        resetCount: prevState.resetCount + 1,
       }),
       () => {
         // Run the onReset event hook prop.
-        if (this.props.onReset) {
-          this.props.onReset();
+        if (onReset) {
+          onReset();
         }
-      }
+      },
     );
   };
 
   // Handles the submit event.
-  onSubmit = event => {
+  onSubmit = (event) => {
+    const { onSubmit } = this.props;
+    const { submitted } = this.state;
+
     event.preventDefault();
-    if (this.state.submitted) {
+    if (submitted) {
       return false;
     }
 
@@ -59,7 +77,7 @@ class Question extends React.Component {
     // Abort submission if correct is null.
     if (correct === null) {
       this.setState({
-        pristine: false
+        pristine: false,
       });
       return false;
     }
@@ -68,14 +86,14 @@ class Question extends React.Component {
       {
         pristine: false,
         submitted: true,
-        correct
+        correct,
       },
       () => {
         // Run the onSubmit event hook prop.
-        if (this.props.onSubmit) {
-          this.props.onSubmit();
+        if (onSubmit) {
+          onSubmit();
         }
-      }
+      },
     );
 
     return true;
@@ -84,111 +102,124 @@ class Question extends React.Component {
   onChange = (pristine = false, valid = null) => {
     this.setState({
       pristine,
-      valid
+      valid,
     });
   };
 
   // Renders the correct question type.
   renderAnswerComponent = () => {
+    const {
+      type, header, body, answer, answers, feedback,
+    } = this.props;
+    const { resetCount, submitted: submitState, correct } = this.state;
+
     const commonProps = {
-      key: this.state.resetCount,
+      key: resetCount,
       ref: this.answerComponentRef,
-      submitted: this.state.submitted,
+      submitted: submitState,
       onChange: this.onChange,
-      ...this.props.questionData,
+      type,
+      header,
+      body,
+      answer,
+      answers,
+      feedback,
     };
 
-
-    switch (this.props.questionData.type) {
-      case "true-false":
+    switch (type) {
+      case 'true-false':
         return (
           <TrueFalse
-            correct={this.state.correct}
+            correct={correct}
             {...commonProps}
           />
         );
-      case "multiple-choice":
+      case 'multiple-choice':
         return (
           <MultipleChoice
-            correct={this.state.correct}
+            correct={correct}
             {...commonProps}
           />
         );
-      case "multiple-answer":
+      case 'multiple-answer':
         return (
           <MultipleAnswer
             {...commonProps}
           />
         );
-      case "calculated-numeric":
+      case 'calculated-numeric':
         return (
           <CalculatedNumeric
             {...commonProps}
           />
         );
       default:
-        console.error(
-          `'${this.props.questionData.type}' is not a recognized question type.`
-        );
+        console.error(`'${type}' is not a recognized question type.`);
         return null;
     }
   };
 
   // Generates the string of classes to be passed to className.
   className = () => {
+    const { pristine, submitted, correct } = this.state;
+
     const prefix = this.constructor.name;
     const classes = [];
 
-    classes.push(this.state.pristine ? "pristine" : "dirty");
-    classes.push(this.state.submitted ? "submitted" : "unsubmitted");
+    classes.push(pristine ? 'pristine' : 'dirty');
+    classes.push(submitted ? 'submitted' : 'unsubmitted');
 
-    if (this.state.correct !== null) {
-      classes.push(this.state.correct ? "correct" : "incorrect");
+    if (correct !== null) {
+      classes.push(correct ? 'correct' : 'incorrect');
     }
 
     const prefixedClasses = classes.map(c => `${prefix}--state-${c}`);
     prefixedClasses.unshift(prefix);
-    return prefixedClasses.join(" ");
+    return prefixedClasses.join(' ');
   };
 
   renderFeedback = () => {
-    if (this.state.correct === null) {
+    const { correct } = this.state;
+    const { feedback } = this.props;
+
+    if (correct === null) {
       return null;
     }
-    const { feedback } = this.props.questionData;
-    const renderedFeedback = this.state.correct
+    const renderedFeedback = correct
       ? feedback.correct
       : feedback.incorrect;
 
     return (
-      <div className={'feedback'}>
-        {this.state.correct
-          ? <CorrectIcon className='questionIconCorrect' />
-          : <IncorrectIcon className='questionIconIncorrect' />} 
+      <div className="feedback">
+        {correct
+          ? <CorrectIcon className="question-icon-correct" />
+          : <IncorrectIcon className="question-icon-incorrect" />}
         {renderedFeedback}
       </div>
     );
   };
 
   render() {
-    const { header, body } = this.props.questionData;
+    const { header, body } = this.props;
+    const { pristine, submitted, valid } = this.state;
+
     return (
-      <article className='question'>
-        <header className='header'>{header}</header>
-        <div className='body'>{body}</div>
+      <article className="question">
+        <header className="header">{header}</header>
+        <div className="body">{body}</div>
         <form onSubmit={this.onSubmit} onReset={this.onReset}>
           {this.renderAnswerComponent()}
-          {!this.state.submitted && (
+          {!submitted && (
             <Button
-              variant='outlined'
-              color='primary'
+              variant="outlined"
+              color="primary"
               type="submit"
-              disabled={this.state.pristine || !this.state.valid}
+              disabled={pristine || !valid}
             >
               Check Answer
             </Button>
           )}
-          {!this.state.pristine && <Button type="reset">Reset</Button>}
+          {!pristine && <Button type="reset">Reset</Button>}
         </form>
         <footer>{this.renderFeedback()}</footer>
       </article>
