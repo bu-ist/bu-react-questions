@@ -109,25 +109,26 @@ class Matching extends React.Component {
     onChange(pristine, valid);
   };
 
-  answerType = (index) => {
-    const { submitted, correct } = this.props;
-    const { selectedAnswer } = this.state;
+  answerType = (answerCorrect) => {
+    const { submitted } = this.props;
 
-    // Calculate what type of feedback the answer should display.
-    if (!submitted || selectedAnswer !== index) {
-      return 'unselected';
+    if (!submitted) {
+      return 'item';
     }
 
-    if ((selectedAnswer === index) && correct) {
-      return 'correct';
+    if (answerCorrect) {
+      return 'item-correct';
     }
 
-    return 'incorrect';
+    return 'item-incorrect';
   }
 
   render() {
     const { answers, submitted } = this.props;
     const { items } = this.state;
+
+    // Calculate if individual answers are correct or not.
+    const answersCorrect = items.map((item, index) => answers[index].order === item.order);
 
     return (
       <div className="matching-area">
@@ -149,6 +150,7 @@ class Matching extends React.Component {
                   >
                     {(provided, snapshot) => (
                       <div
+                        type={this.answerType(answersCorrect[index])}
                         className="item"
                         ref={provided.innerRef}
                         {...provided.draggableProps}
