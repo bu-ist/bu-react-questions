@@ -109,7 +109,7 @@ class Matching extends React.Component {
     onChange(pristine, valid);
   };
 
-  answerType = (answerCorrect) => {
+  answerClass = (answerCorrect) => {
     const { submitted } = this.props;
 
     if (!submitted) {
@@ -150,8 +150,7 @@ class Matching extends React.Component {
                   >
                     {(provided, snapshot) => (
                       <div
-                        type={this.answerType(answersCorrect[index])}
-                        className="item"
+                        className={this.answerClass(answersCorrect[index])}
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}

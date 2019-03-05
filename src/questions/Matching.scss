@@ -10,10 +10,22 @@
             padding: 16px;
             margin: 0 0 8px 0;
             user-select: none;
+            border: solid .2em;
+            border-color: rgba(0, 0, 0, 0);
 
             &-prompt {
                 @extend %item;
                 background: #ececec;
+            }
+
+            &-correct {
+                @extend %item;
+                border-color: rgb(75, 173, 56);
+            }
+
+            &-incorrect {
+                @extend %item;
+                border-color: rgb(170, 50, 50);
             }
         }
     }    
