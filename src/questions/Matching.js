@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import DragIndicator from '@material-ui/icons/DragIndicator';
+import CorrectIcon from '@material-ui/icons/CheckCircleRounded';
+import IncorrectIcon from '@material-ui/icons/CancelRounded';
 
 import Types from '../types';
 
@@ -134,7 +136,7 @@ class Matching extends React.Component {
 
     return (
       <div className="matching-area">
-        <PromptBox answers={answers} />
+        <PromptBox answers={answers} answersCorrect={answersCorrect} submitted={submitted} />
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
@@ -179,9 +181,24 @@ class Matching extends React.Component {
 }
 
 function PromptBox(props) {
-  const { answers } = props;
+  const { answers, answersCorrect, submitted } = props;
 
-  const items = answers.map(item => <div className="item-prompt">{item.feedback}</div>);
+  const items = answers.map((item, index) => {
+    let icon = null;
+
+    if (submitted && (answersCorrect[index])) {
+      icon = <CorrectIcon className="feedback-icon-correct" />;
+    } else if (submitted) {
+      icon = <IncorrectIcon className="feedback-icon-incorrect" />;
+    }
+
+    return (
+      <div className="item-prompt">
+        {icon}
+        {item.feedback}
+      </div>
+    );
+  });
 
   return (
     <div className="item-list">{items}</div>

@@ -1,5 +1,6 @@
 .matching-area {
     display: flex;
+    padding-left: 2.6em;
 
     .item-list {
         width: 250px;
@@ -13,6 +14,7 @@
             border: solid .2em;
             border-color: rgba(0, 0, 0, 0);         
 
+            /* Leave space for the drag handle in the non-prompt items */
             padding-left: 2em;
 
             &-prompt {
@@ -38,6 +40,25 @@
                 top: auto;
                 margin-top: -0.15em;
                 margin-left: -1.1em;
+            }
+
+            .feedback-icon, %feedback-icon {
+                position: absolute;
+                font-size: 2em;
+                left: auto;
+                top: auto;
+                margin-top: -0.2em;
+                margin-left: -2.2em;
+
+                &-correct {
+                    @extend %feedback-icon;
+                    color: rgb(75, 173, 56);
+                }
+        
+                &-incorrect {
+                    @extend %feedback-icon;
+                    color: rgb(170, 50, 50);
+                }
             }
         }
     }    
