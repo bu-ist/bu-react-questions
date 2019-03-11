@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+import DragIndicator from '@material-ui/icons/DragIndicator';
+
 import Types from '../types';
 
 import './common.scss';
@@ -159,6 +161,7 @@ class Matching extends React.Component {
                           provided.draggableProps.style,
                         )}
                       >
+                        <DragIndicator className="drag-handle" />
                         {item.answer}
                       </div>
                     )}
