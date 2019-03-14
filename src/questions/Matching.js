@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import TextListAnswer from './components/TextListAnswer';
@@ -25,7 +24,6 @@ class Matching extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pristine: true,
       selects: [],
     };
   }
@@ -48,24 +46,20 @@ class Matching extends React.Component {
 
   onChangeAnswer = (event) => {
     const pristine = false;
-    const { selectedAnswers } = this.state;
     const { onChange } = this.props;
+    const { target: newSelect } = event;
 
     // Check if answer is valid.
     const valid = true;
 
-    // Toggle selected answer.
-    let newSelectedAnswers;
-    if (selectedAnswers.includes(index)) {
-      newSelectedAnswers = selectedAnswers.filter(i => i !== index);
-    } else {
-      newSelectedAnswers = [...selectedAnswers, index];
-    }
+    // Update component state with new set of selections.
+    this.setState((prevState) => {
+      // If the target name or value already exists in the state, remove it.
+      const filteredSelects = prevState.selects.filter(x => x.name !== newSelect.name && x.value !== newSelect.value);
 
-    // Update component state.
-    this.setState({
-      pristine,
-      selectedAnswers: newSelectedAnswers,
+      // Then add the new event target to state.
+      const newSelects = [...filteredSelects, newSelect];
+      return { selects: newSelects };
     });
 
     // Update question wrapper component state.
@@ -100,7 +94,13 @@ class Matching extends React.Component {
     ));
 
     const renderAnswers = answers.map((answer, index) => {
-      const select = selects.includes(index);
+      const select = selects.find(x => (x.name === index));
+
+      let value = null;
+      if (select) {
+        value = select.value;
+      }
+
       const answerType = this.answerType(index);
 
       return (
@@ -108,16 +108,17 @@ class Matching extends React.Component {
         <TextListAnswer
           key={index}
           answer={answer}
-          //selected={selected}
           type={answerType}
           onChangeAnswer={this.onChangeAnswer}
           submitted={submitted}
         >
           <Select
             color="primary"
-            //checked={selected}
+            index={index}
             onChange={this.onChangeAnswer}
             disabled={submitted}
+            name={index}
+            value={value}
           >
             <MenuItem value="A">A</MenuItem>
             <MenuItem value="B">B</MenuItem>
