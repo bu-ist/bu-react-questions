@@ -93,6 +93,9 @@ class Matching extends React.Component {
       a.correct.localeCompare(b.correct)
     ));
 
+    // Map answersInOrder to build an array of menuItem values
+    const menuItems = answersInOrder.map(x => <MenuItem value={x.correct}>{x.correct}</MenuItem>);
+
     const renderAnswers = answers.map((answer, index) => {
       const select = selects.find(x => (x.name === index));
 
@@ -120,11 +123,7 @@ class Matching extends React.Component {
             name={index}
             value={value}
           >
-            <MenuItem value="A">A</MenuItem>
-            <MenuItem value="B">B</MenuItem>
-            <MenuItem value="C">C</MenuItem>
-            <MenuItem value="D">D</MenuItem>
-            <MenuItem value="E">E</MenuItem>
+            {menuItems}
           </Select>
         </TextListAnswer>
       );
