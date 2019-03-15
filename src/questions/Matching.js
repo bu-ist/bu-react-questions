@@ -32,8 +32,11 @@ class Matching extends React.Component {
     const { answers } = this.props;
     const { selects } = this.state;
 
-    // Compare answers with selects
-    const checkAnswers = answers.map((answer, index) => answer.correct === selects[index].value);
+    // Sort selects array for comparison, without mutating original array.
+    const selectsOrdered = [...selects].sort((a, b) => parseFloat(a.name) - parseFloat(b.name));
+
+    // Compare answers with sorted selects
+    const checkAnswers = answers.map((answer, index) => answer.correct === selectsOrdered[index].value);
     const correct = checkAnswers.every(x => x);
 
     return correct;
