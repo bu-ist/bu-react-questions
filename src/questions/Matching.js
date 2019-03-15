@@ -29,18 +29,18 @@ class Matching extends React.Component {
   }
 
   isCorrect = () => {
-    let correct = true;
     const { answers } = this.props;
-    const { selectedAnswers } = this.state;
+    const { selects } = this.state;
 
-    answers.forEach((answer, index) => {
-      if (
-        (answer.correct && !selectedAnswers.includes(index))
-        || (!answer.correct && selectedAnswers.includes(index))
-      ) {
-        correct = false;
-      }
-    });
+    // Incorrect if incomplete answers
+    if (answers.length !== selects.length) {
+      return false;
+    }
+
+    // Compare answer.correct with selects.value
+    const checkAnswers = answers.map((answer, index) => answer.correct === selects[index].value);
+    const correct = checkAnswers.every(x => x);
+
     return correct;
   };
 
@@ -68,16 +68,16 @@ class Matching extends React.Component {
 
   answerType = (index) => {
     const { answers, submitted } = this.props;
-    const { selectedAnswers } = this.state;
+    const { selects } = this.state;
 
     // Calculate what type of feedback the answer should display.
-    const { correct } = answers[index];
-
-    if (!submitted || !(selectedAnswers.includes(index) || correct)) {
+    if (!submitted) {
       return 'unselected';
     }
 
-    if (selectedAnswers.includes(index) && correct) {
+    const selectForIndex = selects.find(x => x.name === index);
+
+    if (answers[index].correct === selectForIndex.value) {
       return 'correct';
     }
 
