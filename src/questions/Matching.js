@@ -37,7 +37,7 @@ class Matching extends React.Component {
       return false;
     }
 
-    // Compare answer.correct with selects.value
+    // Compare answers with selects
     const checkAnswers = answers.map((answer, index) => answer.correct === selects[index].value);
     const correct = checkAnswers.every(x => x);
 
@@ -45,12 +45,8 @@ class Matching extends React.Component {
   };
 
   onChangeAnswer = (event) => {
-    const pristine = false;
     const { onChange } = this.props;
     const { target: newSelect } = event;
-
-    // Check if answer is valid.
-    const valid = true;
 
     // Update component state with new set of selections.
     this.setState((prevState) => {
@@ -60,10 +56,18 @@ class Matching extends React.Component {
       // Then add the new event target to state.
       const newSelects = [...filteredSelects, newSelect];
       return { selects: newSelects };
-    });
+    }, () => {
+      // Compare answers to state in setState callback to ensure state has completed updating
+      const { answers } = this.props;
+      const { selects } = this.state;
+      const pristine = false;
 
-    // Update question wrapper component state.
-    onChange(pristine, valid);
+      // Only valid if all selects are complete.
+      const valid = answers.length === selects.length;
+
+      // Update question wrapper component state.
+      onChange(pristine, valid);
+    });
   };
 
   answerType = (index) => {
