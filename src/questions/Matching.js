@@ -32,11 +32,6 @@ class Matching extends React.Component {
     const { answers } = this.props;
     const { selects } = this.state;
 
-    // Incorrect if incomplete answers
-    if (answers.length !== selects.length) {
-      return false;
-    }
-
     // Compare answers with selects
     const checkAnswers = answers.map((answer, index) => answer.correct === selects[index].value);
     const correct = checkAnswers.every(x => x);
