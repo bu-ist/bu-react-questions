@@ -4,14 +4,21 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import TextListAnswer from './components/TextListAnswer';
-import Types from '../types';
 
 import './common.scss';
 import './Matching.scss';
 
+const answerPropType = PropTypes.arrayOf(
+  PropTypes.shape({
+    answer: PropTypes.node.isRequired,
+    feedback: PropTypes.node,
+    correct: PropTypes.string,
+  }),
+);
+
 class Matching extends React.Component {
   static propTypes = {
-    answers: Types.questionData.answers.isRequired,
+    answers: answerPropType.isRequired,
     submitted: PropTypes.bool,
     onChange: PropTypes.func,
   };
@@ -156,5 +163,9 @@ function PromptBox(props) {
     <div className="item-list">{items}</div>
   );
 }
+
+PromptBox.propTypes = {
+  answers: answerPropType.isRequired,
+};
 
 export default Matching;
