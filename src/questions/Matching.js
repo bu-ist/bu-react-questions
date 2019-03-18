@@ -43,7 +43,9 @@ class Matching extends React.Component {
     const selectsOrdered = [...selects].sort((a, b) => parseFloat(a.name) - parseFloat(b.name));
 
     // Compare answers with sorted selects
-    const checkAnswers = answers.map((answer, index) => answer.correct === selectsOrdered[index].value);
+    const checkAnswers = answers.map((answer, index) => (
+      answer.correct === selectsOrdered[index].value
+    ));
     const correct = checkAnswers.every(x => x);
 
     return correct;
@@ -56,7 +58,9 @@ class Matching extends React.Component {
     // Update component state with new set of selections.
     this.setState((prevState) => {
       // If the target name or value already exists in the state, remove it.
-      const filteredSelects = prevState.selects.filter(x => x.name !== newSelect.name && x.value !== newSelect.value);
+      const filteredSelects = prevState.selects.filter(x => (
+        x.name !== newSelect.name && x.value !== newSelect.value
+      ));
 
       // Then add the new event target to state.
       const newSelects = [...filteredSelects, newSelect];
