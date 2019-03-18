@@ -103,12 +103,14 @@ class Matching extends React.Component {
     ));
 
     // Map answersInOrder to build an array of menuItem values
-    const menuItems = answersInOrder.map(x => <MenuItem value={x.correct}>{x.correct}</MenuItem>);
+    const menuItems = answersInOrder.map(x => (
+      <MenuItem key={x.correct} value={x.correct}>{x.correct}</MenuItem>
+    ));
 
     const renderAnswers = answers.map((answer, index) => {
       const select = selects.find(x => (x.name === index));
 
-      let value = null;
+      let value = '';
       if (select) {
         value = select.value;
       }
@@ -118,7 +120,7 @@ class Matching extends React.Component {
       return (
 
         <TextListAnswer
-          key={index}
+          key={answer.correct}
           answer={answer}
           type={answerType}
           onChangeAnswer={this.onChangeAnswer}
@@ -127,6 +129,7 @@ class Matching extends React.Component {
           <Select
             color="primary"
             index={index}
+            key={answer.correct}
             onChange={this.onChangeAnswer}
             disabled={submitted}
             name={index}
@@ -151,7 +154,7 @@ function PromptBox(props) {
   const { answers } = props;
 
   const items = answers.map(item => (
-    <div className="item-prompt">
+    <div className="item-prompt" key={item.correct}>
       {item.correct}
       .
       {' '}
