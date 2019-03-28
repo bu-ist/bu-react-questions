@@ -108,7 +108,7 @@ class Matching extends React.Component {
 
     // Map answersInOrder to build an array of menuItem values
     const menuItems = answersInOrder.map(x => (
-      <MenuItem key={x.correct} value={x.correct}>{x.correct}</MenuItem>
+      <MenuItem key={x.correct} value={x.correct} aria-label={`${x.correct} ${x.feedback}`}>{x.correct}</MenuItem>
     ));
 
     const renderAnswers = answers.map((answer, index) => {
@@ -147,7 +147,7 @@ class Matching extends React.Component {
 
     return (
       <div className="matching-area">
-        <ul className="answer-list">{renderAnswers}</ul>
+        <ul role="contentinfo" aria-label="Answer menus" className="answer-list">{renderAnswers}</ul>
         <PromptBox answers={answersInOrder} />
       </div>
     );
@@ -167,7 +167,7 @@ function PromptBox(props) {
   ));
 
   return (
-    <div className="prompts">{items}</div>
+    <div role="contentinfo" aria-label="Answer keys" className="prompts">{items}</div>
   );
 }
 
