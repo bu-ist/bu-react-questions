@@ -76,7 +76,7 @@ class TrueFalse extends React.Component {
 
       return (
         <TextListAnswer
-          key={index}
+          key={answer.answer}
           answer={answer}
           type={answerType}
           onChangeAnswer={this.onChangeAnswer}
