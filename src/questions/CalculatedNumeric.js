@@ -124,6 +124,8 @@ class CalculatedNumeric extends React.Component {
           <div>
             <ul>
               {errors.map((error, index) => (
+                // There is only ever going to be one error, so accept array index as key.
+                // eslint-disable-next-line react/no-array-index-key
                 <li key={index}>{error}</li>
               ))}
             </ul>

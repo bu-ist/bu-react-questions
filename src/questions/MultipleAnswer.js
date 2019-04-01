@@ -95,6 +95,8 @@ class MultipleAnswer extends React.Component {
 
       return (
         <TextListAnswer
+          // Multiple answer order never changes, so accept array index as key.
+          // eslint-disable-next-line react/no-array-index-key
           key={index}
           answer={answer}
           selected={selected}
