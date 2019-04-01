@@ -22,7 +22,6 @@ class MultipleAnswer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pristine: true,
       selectedAnswers: [],
     };
   }
@@ -61,7 +60,6 @@ class MultipleAnswer extends React.Component {
 
     // Update component state.
     this.setState({
-      pristine,
       selectedAnswers: newSelectedAnswers,
     });
 

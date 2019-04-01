@@ -24,7 +24,6 @@ class MultipleChoice extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pristine: true,
       selectedAnswer: null,
     };
   }
@@ -46,7 +45,6 @@ class MultipleChoice extends React.Component {
 
     // Update component state.
     this.setState({
-      pristine,
       selectedAnswer: index,
     });
 

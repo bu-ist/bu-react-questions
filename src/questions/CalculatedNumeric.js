@@ -19,7 +19,6 @@ class CalculatedNumeric extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pristine: true,
       valid: null,
       errors: [],
       answer: '',
@@ -101,7 +100,6 @@ class CalculatedNumeric extends React.Component {
 
     // Update component state.
     this.setState({
-      pristine,
       valid,
       errors,
       answer,

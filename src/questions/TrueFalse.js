@@ -24,7 +24,6 @@ class TrueFalse extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pristine: true,
       selectedAnswer: null,
     };
   }
@@ -45,7 +44,6 @@ class TrueFalse extends React.Component {
 
     // Update component state.
     this.setState({
-      pristine,
       selectedAnswer: index,
     });
 
