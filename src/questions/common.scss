@@ -8,46 +8,46 @@
     input:disabled {
         opacity: 0;
     }
-    
+
     .answer, %answer {
-        margin: .1em;
-        border: solid .2em;
-        border-radius: .8em;
+        border: solid 0.2em;
+        border-color: rgba( 255, 255, 255, 0 );
+        border-radius: 0.8em;
         box-sizing: border-box;
-        border-color: rgba(255,255,255,0);
-    
+        margin: 0.1em;
+
         &-correct {
             @extend %answer;
-            border-color: rgb(75, 173, 56);
+            border-color: rgb( 75, 173, 56 );
         }
     
         &-incorrect {
             @extend %answer;
-            border-color: rgb(170, 50, 50);
+            border-color: rgb( 170, 50, 50 );
         }
     }
 
     .feedback-icon, %feedback-icon {
-        position: absolute;
         font-size: 2em;
         left: auto;
-        top: auto;
-        margin-top: .36em;
         margin-left: -1.05em;
+        margin-top: 0.36em;
+        position: absolute;
+        top: auto;
 
         &-correct {
             @extend %feedback-icon;
-            color: rgb(75, 173, 56);
+            color: rgb( 75, 173, 56 );
         }
 
         &-incorrect {
             @extend %feedback-icon;
-            color: rgb(170, 50, 50);
+            color: rgb( 170, 50, 50 );
         }
     }
-    
+
     .feedback {
-        margin-left: 3em;
         font-style: italic;
+        margin-left: 3em;
     }
 }
