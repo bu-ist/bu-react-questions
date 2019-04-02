@@ -14,6 +14,10 @@ See [demo/src/index.js](demo/src/index.js) for example usage.
 
 ## Changelog
 
+### v0.0.7
+
+Minor code style fixes, including removing unused 'pristine' state from individual components.
+
 ### v0.0.6
 
 Fixes a problem where the decimalPlaces prop wasn't being properly passed to the CalculatedNumeric component.

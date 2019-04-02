@@ -22,7 +22,6 @@ class MultipleAnswer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pristine: true,
       selectedAnswers: [],
     };
   }
@@ -61,7 +60,6 @@ class MultipleAnswer extends React.Component {
 
     // Update component state.
     this.setState({
-      pristine,
       selectedAnswers: newSelectedAnswers,
     });
 
@@ -97,6 +95,8 @@ class MultipleAnswer extends React.Component {
 
       return (
         <TextListAnswer
+          // Multiple answer order never changes, so accept array index as key.
+          // eslint-disable-next-line react/no-array-index-key
           key={index}
           answer={answer}
           selected={selected}

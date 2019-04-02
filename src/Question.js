@@ -155,6 +155,7 @@ class Question extends React.Component {
           />
         );
       default:
+        // eslint-disable-next-line no-console
         console.error(`'${type}' is not a recognized question type.`);
         return null;
     }

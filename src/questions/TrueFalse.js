@@ -24,7 +24,6 @@ class TrueFalse extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pristine: true,
       selectedAnswer: null,
     };
   }
@@ -45,7 +44,6 @@ class TrueFalse extends React.Component {
 
     // Update component state.
     this.setState({
-      pristine,
       selectedAnswer: index,
     });
 
@@ -78,7 +76,7 @@ class TrueFalse extends React.Component {
 
       return (
         <TextListAnswer
-          key={index}
+          key={answer.answer}
           answer={answer}
           type={answerType}
           onChangeAnswer={this.onChangeAnswer}
