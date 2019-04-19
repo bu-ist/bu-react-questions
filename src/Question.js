@@ -109,7 +109,7 @@ class Question extends React.Component {
   // Renders the correct question type.
   renderAnswerComponent = () => {
     const {
-      type, header, body, answer, answers, feedback, decimalPlaces = '0',
+      type, header, body, answer, answers, feedback, decimalPlaces = '0', answerRange = '0',
     } = this.props;
     const { resetCount, submitted: submitState, correct } = this.state;
 
@@ -151,6 +151,7 @@ class Question extends React.Component {
         return (
           <CalculatedNumeric
             decimalPlaces={decimalPlaces}
+            answerRange={answerRange}
             {...commonProps}
           />
         );
