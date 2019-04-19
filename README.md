@@ -14,6 +14,10 @@ See [demo/src/index.js](demo/src/index.js) for example usage.
 
 ## Changelog
 
+### v0.0.8
+
+Fix for Calculated Numeric answer range.
+
 ### v0.0.7
 
 Minor code style fixes, including removing unused 'pristine' state from individual components.
