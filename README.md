@@ -14,6 +14,18 @@ See [demo/src/index.js](demo/src/index.js) for example usage.
 
 ## Changelog
 
+### v0.0.8
+
+Fix for Calculated Numeric answer range.
+
+### v0.0.7
+
+Minor code style fixes, including removing unused 'pristine' state from individual components.
+
+### v0.0.6
+
+Fixes a problem where the decimalPlaces prop wasn't being properly passed to the CalculatedNumeric component.
+
 ### v0.0.5
 
 This is a breaking change that changes the Question component's prop signature from having a single questionData prop to exposing all of the previous questionData properties as individual props.  This allows us to have more flexibility when defining the PropTypes in a separate file and sharing them between different components.
@@ -27,7 +39,6 @@ Changes include:
 - Code style updates
 - CSS updates with SASS placeholders and hyphen-case
 
-
 ### v0.0.4
 
 Changes include:
@@ -40,11 +51,13 @@ Changes include:
 - Remove i18n for CN question type
 
 ### v0.0.3
+
 Package moved to @bostonuniversity org
 
 ### v0.0.2
 
 Assume all questions have a correct and incorrect feedback.
+
 ```json
 {
   "feedback": {

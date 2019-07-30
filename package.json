@@ -1,6 +1,6 @@
 {
   "name": "@bostonuniversity/react-questions",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "description": "react-questions React component library for questions",
   "main": "lib/index.js",
   "module": "es/index.js",
