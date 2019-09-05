@@ -19,15 +19,6 @@ class FillInTheBlank extends React.Component {
     };
   }
 
-  validateAnswer = (answer) => {
-    const errors = [];
-    if (answer === '') {
-      errors.push('Please enter an answer');
-    }
-
-    return errors;
-  };
-
   isCorrect = () => {
     const { answer } = this.props;
     const { answer: submittedAnswer } = this.state;
