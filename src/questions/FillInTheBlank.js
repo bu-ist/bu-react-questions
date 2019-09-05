@@ -5,14 +5,10 @@ import Types from '../types';
 class FillInTheBlank extends React.Component {
   static propTypes = {
     answer: Types.questionData.answer.isRequired,
-    answerRange: PropTypes.string,
-    decimalPlaces: PropTypes.string,
     onChange: PropTypes.func,
   };
 
   static defaultProps = {
-    answerRange: '0',
-    decimalPlaces: '0',
     onChange: null,
   };
 
@@ -20,7 +16,6 @@ class FillInTheBlank extends React.Component {
     super(props);
     this.state = {
       answer: '',
-      valid: null,
     };
   }
 
@@ -53,7 +48,6 @@ class FillInTheBlank extends React.Component {
 
     // Update component state.
     this.setState({
-      valid,
       answer,
     });
 
