@@ -115,6 +115,17 @@ const calculatedNumericQuestionData = {
   },
 };
 
+const fillInTheBlankQuestionData = {
+  type: 'fill-in-the-blank',
+  header: 'Type in the word exactly in lower case',
+  body: 'What is the Spanish word for grandmother?',
+  answer: 'abuela',
+  feedback: {
+    correct: 'Yes, that is correct',
+    incorrect: 'No, that is not the exact lower case spelling',
+  },
+};
+
 function Demo() {
   return (
     <div>
@@ -123,6 +134,7 @@ function Demo() {
       <Question {...multipleChoiceQuestionData} />
       <Question {...multipleAnswerQuestionData} />
       <Question {...calculatedNumericQuestionData} />
+      <Question {...fillInTheBlankQuestionData} />
     </div>
   );
 }

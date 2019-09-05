@@ -8,6 +8,7 @@ import {
   MultipleChoice,
   MultipleAnswer,
   CalculatedNumeric,
+  FillInTheBlank,
 } from './questions';
 import Types from './types';
 
@@ -152,6 +153,12 @@ class Question extends React.Component {
           <CalculatedNumeric
             decimalPlaces={decimalPlaces}
             answerRange={answerRange}
+            {...commonProps}
+          />
+        );
+      case 'fill-in-the-blank':
+        return (
+          <FillInTheBlank
             {...commonProps}
           />
         );
