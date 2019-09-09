@@ -54,6 +54,7 @@ class FillInTheBlank extends React.Component {
     return (
       <div>
         <input
+          size="40"
           type="text"
           value={answer}
           placeholder="Enter answer here"
