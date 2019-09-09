@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Types from '../types';
 
+import './common.scss';
+
 class FillInTheBlank extends React.Component {
   static propTypes = {
     answer: Types.questionData.answer.isRequired,
