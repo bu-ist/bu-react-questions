@@ -25,6 +25,7 @@ class FillInTheBlank extends React.Component {
     const { answer } = this.props;
     const { answer: submittedAnswer } = this.state;
 
+    // Only correct if there is an exact string match.
     if (submittedAnswer === answer) {
       return true;
     }
