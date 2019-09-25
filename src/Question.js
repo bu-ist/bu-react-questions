@@ -110,7 +110,7 @@ class Question extends React.Component {
   // Renders the correct question type.
   renderAnswerComponent = () => {
     const {
-      type, header, body, answer, answers, feedback, decimalPlaces = '0', answerRange = '0',
+      type, header, body, answer, answers, feedback, decimalPlaces = '0', answerRange = '0', caseSensitive = true,
     } = this.props;
     const { resetCount, submitted: submitState, correct } = this.state;
 
@@ -157,8 +157,11 @@ class Question extends React.Component {
           />
         );
       case 'fill-in-the-blank':
+        // Booleans are easily mangled coming from WP,
+        // so add a !! before caseSensitive to coerce a boolean value.
         return (
           <FillInTheBlank
+            caseSensitive={!!caseSensitive}
             {...commonProps}
           />
         );

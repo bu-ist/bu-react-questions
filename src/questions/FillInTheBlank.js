@@ -7,10 +7,12 @@ import './common.scss';
 class FillInTheBlank extends React.Component {
   static propTypes = {
     answer: Types.questionData.answer.isRequired,
+    caseSensitive: PropTypes.bool,
     onChange: PropTypes.func,
   };
 
   static defaultProps = {
+    caseSensitive: true,
     onChange: null,
   };
 
@@ -22,10 +24,17 @@ class FillInTheBlank extends React.Component {
   }
 
   isCorrect = () => {
-    const { answer } = this.props;
+    const { answer, caseSensitive } = this.props;
     const { answer: submittedAnswer } = this.state;
 
-    // Only correct if there is an exact string match.
+    if (caseSensitive !== true) {
+      // For non-case sensitive answers, compare strings but consider accented charaters.
+      return (
+        answer.localeCompare(submittedAnswer, undefined, { sensitivity: 'accent' }) === 0
+      );
+    }
+
+    // Otherwise, case sensitive answers are only correct if there is an exact string match.
     if (submittedAnswer === answer) {
       return true;
     }

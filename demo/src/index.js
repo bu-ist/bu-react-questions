@@ -120,6 +120,7 @@ const fillInTheBlankQuestionData = {
   header: 'Type in the word exactly in lower case',
   body: 'What is the Spanish word for grandmother?',
   answer: 'abuela',
+  caseSensitive: true,
   feedback: {
     correct: 'Yes, that is correct',
     incorrect: 'No, that is not the exact lower case spelling',
