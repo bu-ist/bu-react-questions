@@ -39,9 +39,9 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
   },
-  "author": "",
-  "homepage": "",
-  "license": "MIT",
+  "author": "Carlos E Silva, Jonathan Williams",
+  "homepage": "https://developer.bu.edu",
+  "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
     "url": "https://github.com/bu-ist/bu-react-questions"
