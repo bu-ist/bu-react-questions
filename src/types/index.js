@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const questionData = {
-  type: PropTypes.oneOf(['true-false', 'multiple-answer', 'multiple-choice', 'calculated-numeric', 'matching']),
+  type: PropTypes.oneOf(['true-false', 'multiple-answer', 'multiple-choice', 'calculated-numeric', 'fill-in-the-blank', 'matching']),
   header: PropTypes.node,
   body: PropTypes.node,
   answer: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
