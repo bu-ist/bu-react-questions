@@ -158,7 +158,7 @@ function PromptBox(props) {
   const { answers } = props;
 
   const items = answers.map(item => (
-    <div className="prompts-item" key={item.correct}>
+    <div className="matching-prompts-item" key={item.correct}>
       {item.correct}
       .
       {' '}
@@ -167,7 +167,7 @@ function PromptBox(props) {
   ));
 
   return (
-    <div role="contentinfo" aria-label="Answer keys" className="prompts">{items}</div>
+    <div role="contentinfo" aria-label="Answer keys" className="matching-prompts">{items}</div>
   );
 }
 

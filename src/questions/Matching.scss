@@ -20,13 +20,17 @@
         }
     }
 
-    .prompts {
+    .matching-prompts {
         width: 40%;
-        padding: .3em;
 
         &-item {
-            padding: 1.1em;
-            margin: 0 0 .6em 0;
+            box-sizing: border-box;
+            border-radius: 0.8em;
+            border: solid 0.2em;
+            border-color: rgba( 255, 255, 255, 0 );
+            line-height: 1.8em;
+            padding: 0.8em;
+            margin: 0.25em;
             background: #e9e9e9;
         }
     }    
