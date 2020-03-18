@@ -1,0 +1,37 @@
+.matching-area {
+    padding-top: .1em;
+    display: flex;
+
+    .answer-list {
+        width: 40%;
+        margin-right: 5%;
+        margin-top: 0em;
+
+        %matching-answer {
+            padding: .8em;
+        }
+
+        .answer {
+            @extend %matching-answer;
+
+            &-correct, &-incorrect {
+                @extend %matching-answer;
+            }
+        }
+    }
+
+    .matching-prompts {
+        width: 40%;
+
+        &-item {
+            box-sizing: border-box;
+            border-radius: 0.8em;
+            border: solid 0.2em;
+            border-color: rgba( 255, 255, 255, 0 );
+            line-height: 1.8em;
+            padding: 0.8em;
+            margin: 0.25em;
+            background: #e9e9e9;
+        }
+    }    
+}

@@ -9,6 +9,7 @@ import {
   MultipleAnswer,
   CalculatedNumeric,
   FillInTheBlank,
+  Matching,
 } from './questions';
 import Types from './types';
 
@@ -162,6 +163,12 @@ class Question extends React.Component {
         return (
           <FillInTheBlank
             caseSensitive={!!caseSensitive}
+            {...commonProps}
+          />
+        );
+      case 'matching':
+        return (
+          <Matching
             {...commonProps}
           />
         );

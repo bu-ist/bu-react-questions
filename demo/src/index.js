@@ -127,6 +127,44 @@ const fillInTheBlankQuestionData = {
   },
 };
 
+const matchingQuestionData = {
+  type: 'matching',
+  header: 'Match the words',
+  body: 'Match the word in Spanish to the corresponding word in English',
+  answers: [
+    {
+      answer: 'abuela',
+      feedback: 'grandmother',
+      correct: 'B',
+    },
+    {
+      answer: 'comida',
+      feedback: 'food',
+      correct: 'D',
+    },
+    {
+      answer: 'manzana',
+      feedback: 'apple',
+      correct: 'A',
+    },
+    {
+      answer: 'cielo',
+      feedback: 'sky',
+      correct: 'E',
+    },
+    {
+      answer: 'mesa',
+      feedback: 'table',
+      correct: 'C',
+    },
+  ],
+  feedback: {
+    correct: 'You picked all of the correct answers!',
+    incorrect:
+      'Sorry, see the feedback below your answers for why it was wrong.',
+  },
+};
+
 function Demo() {
   return (
     <div>
@@ -136,6 +174,7 @@ function Demo() {
       <Question {...multipleAnswerQuestionData} />
       <Question {...calculatedNumericQuestionData} />
       <Question {...fillInTheBlankQuestionData} />
+      <Question {...matchingQuestionData} />
     </div>
   );
 }
