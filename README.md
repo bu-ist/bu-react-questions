@@ -14,6 +14,14 @@ See [demo/src/index.js](demo/src/index.js) for example usage.
 
 ## Changelog
 
+### v0.1.0
+
+Add Matching question type.
+
+### v0.0.9
+
+Add Fill in the Blank question type.
+
 ### v0.0.8
 
 Fix for Calculated Numeric answer range.
