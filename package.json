@@ -1,6 +1,6 @@
 {
   "name": "@bostonuniversity/react-questions",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "react-questions React component library for questions",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -20,8 +20,8 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "@material-ui/core": "^3.8.2",
-    "@material-ui/icons": "^3.0.2",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "prop-types": "^15.6.2"
   },
   "peerDependencies": {
@@ -34,8 +34,8 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
-    "nwb": "0.23.x",
-    "nwb-sass": "^0.9.0",
+    "nwb": "^0.25.2",
+    "nwb-sass": "^0.10.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
   },
